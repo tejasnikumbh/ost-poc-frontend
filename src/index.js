@@ -6,10 +6,12 @@ import ReduxPromise from 'redux-promise';
 
 import reducers from './reducers';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import PostsIndex from './containers/posts-index';
-import PostsNew from './containers/posts-new';
-import PostsDetail from './containers/posts-detail';
 
+class HelloComponent extends Component {
+  render() {
+    return(<div className="container"> Hello, API Active! </div>);
+  }
+}
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
@@ -17,9 +19,7 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <Switch>
-        <Route path="/posts/new" component={PostsNew}/>
-        <Route path="/posts/:id" component={PostsDetail}/>
-        <Route path="/" component={PostsIndex}/>
+        <Route path="/" component={HelloComponent}/>
       </Switch>
     </BrowserRouter>
   </Provider>
