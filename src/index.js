@@ -11,7 +11,7 @@ import Login from './components/login';
 import Profile from './components/profile';
 import QuizInstruction from './components/quiz-instruction';
 import QuizContent from './components/quiz-content';
-
+import Hello from './components/hello';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
@@ -23,6 +23,7 @@ ReactDOM.render(
         <Route path="/profile" component={Profile}/>
         <Route path="/quiz/instruction" component={QuizInstruction}/>
         <Route path="/quiz/:id/" component={QuizContent}/>
+        <Route path="/" component={Hello}/>
       </Switch>
     </BrowserRouter>
   </Provider>
