@@ -1,12 +1,12 @@
 module.exports = {
-  entry: ['./source/index.js'],
+  entry: ['./src/index.js'],
   output: {
     path: __dirname,
     publicPath: '/',
     filename: 'bundle.js'
   },
   module: {
-    rules: [
+    loaders: [
       {
         exclude: /node_modules/,
         loader: 'babel',
