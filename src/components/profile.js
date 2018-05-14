@@ -10,12 +10,15 @@ class Profile extends Component {
   }
 
   render() {
+    console.log(this.props);
     // Case when fetching profile
-    if(!this.props.profile) {
+    if(_.isEmpty(this.props.profile.data) &&
+    !this.props.profile.isAuthenticated) {
       return (<div> Loading... </div>);
     }
     // Case when unauthorized access
-    if(!this.props.profile.isAuthenticated) {
+    if(!_.isEmpty(this.props.profile.data) &&
+    !this.props.profile.isAuthenticated) {
       return (<div> 401 Access Unauthorized </div>);
     }
     // Correct access
