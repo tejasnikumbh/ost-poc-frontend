@@ -11,6 +11,7 @@
 [x] Storage for maintaining user logged in
 [x] Error showing on incorrect LOGIN
 [ ] Make profile page private
+[ ] Make loader for signup and login loading
 [ ] Logout functionality
 [ ] Forgot password functionality
 [ ] Replace sessionStorage with localStorage
