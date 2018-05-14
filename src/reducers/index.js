@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux';
-// import { reducer as FormReducer } from "redux-form";
+import { reducer as QuizReducer } from 'redux-form';
+
+import UserReducer from './reducer-user';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  user: UserReducer,
+  form: QuizReducer
 });
 
 export default rootReducer;

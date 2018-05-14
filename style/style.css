@@ -1,3 +1,20 @@
 .container {
   padding: 20px;
 }
+
+div.text-help {
+  font-size: 0.8em;
+  color: red;
+}
+
+input.form-control {
+  border-radius: 8px;
+}
+
+button.signup {
+
+}
+
+button.login {
+  margin-left: 16px;
+}
