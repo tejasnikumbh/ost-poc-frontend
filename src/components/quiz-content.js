@@ -1,6 +1,9 @@
 import React,{Component} from 'react';
 import {fetchQuiz} from './../actions/index';
 import {connect} from 'react-redux';
+import {Field, reduxForm} from 'redux-form';
+
+import _ from 'lodash';
 
 class QuizContent extends Component {
   // For auth population and quiz meta data
@@ -11,10 +14,39 @@ class QuizContent extends Component {
     }
   }
 
-  renderQuiz() {
-    console.log(this.props.quiz.data);
+  renderQuestion(field) {
     return (
-      <div> Hello Quiz </div>
+      <div className='question-title' key={field.question._id}>
+        { field.question.title }
+      </div>
+    );
+  }
+
+  renderQuestions() {
+    const quiz = this.props.quiz.data;
+    return _.map(quiz.questions, question => {
+      return (
+        <Field
+          question={question}
+          name={question._id}
+          key={question._id}
+          component={this.renderQuestion}
+        />
+      );
+    });
+  }
+
+  renderQuiz() {
+    const { handleSubmit } = this.props;
+
+    return (
+      <div className='container'>
+        <div className='header'> Header </div>
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            { this.renderQuestions() }
+          <button type="submit" className="btn btn-primary">Submit</button>
+          </form>
+      </div>
     );
   }
 
@@ -32,10 +64,22 @@ class QuizContent extends Component {
     // Correct access
     return this.renderQuiz();
   }
+
+  onSubmit() {
+    console.log('Submitted!');
+  }
+}
+
+function validate() {
+  var errors = {};
+  return errors;
 }
 
 function mapStateToProps({quiz}) {
   return {quiz};
 }
 
-export default connect(mapStateToProps, {fetchQuiz})(QuizContent);
+export default reduxForm({
+  validate,
+  form: "QuizAnswersForm"
+})(connect(mapStateToProps, {fetchQuiz})(QuizContent));
