@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import { Redirect } from 'react-router-dom';
 
 import {connect} from "react-redux";
-import {signup, login} from './../actions';
+import {signup, login, SIGN_UP, LOGIN} from './../actions/index';
 
 import validator from 'email-validator';
 import _ from 'lodash';
@@ -41,11 +41,15 @@ class Login extends Component {
   render() {
     // Redirect to profile in case already logged in
     const sessionAuthToken = sessionStorage.getItem('x-auth');
-    if(!_.isEmpty(this.props.user) || sessionAuthToken != null) {
+    if(!_.isEmpty(this.props.user.data) || sessionAuthToken != null) {
       return <Redirect to="/profile"/>;
     }
 
     const {handleSubmit} = this.props;
+
+    // Show error message in case there is an error with user data fetched
+    const actionError = this.props.user.error;
+    const actionTaken = this.props.user.action;
 
     return(
       <div className="container">
@@ -69,6 +73,9 @@ class Login extends Component {
               ...values,
               button: 'login'
             }))}>Login</button>
+          <div className="text-help spaced">
+            {this.props.user.error ? `*Error with ${actionTaken} - Check credentials` : ``}
+          </div>
       </div>
     );
   }
