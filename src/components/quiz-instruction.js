@@ -21,10 +21,16 @@ class QuizInstruction extends Component {
           timed as well, so the faster you can answer, the better.
         </div>
         <div className='title'> Specifics </div>
-        <div className='detail-item'> Participation Fee: {quiz.participation_fee} DPLT</div>
-        <div className='detail-item'> Reward Amount: {quiz.reward_amount} DPLT</div>
-        <div className='detail-item'> Percentage Rewarded: {quiz.percentage_rewarded * 100} % </div>
-        <Link to={`/quiz/${quiz.id}`} className='btn-link'>
+        <div className='detail-item'>
+          Participation Fee: {quiz.participation_fee} DPLT
+        </div>
+        <div className='detail-item'>
+          Reward Amount: {quiz.reward_amount} DPLT
+        </div>
+        <div className='detail-item'>
+          Percentage Rewarded: {quiz.percentage_rewarded * 100} %
+        </div>
+        <Link to={`/quiz/${quiz._id}`} className='btn-link'>
           <button className='btn btn-primary'> Take Quiz </button>
         </Link>
       </div>

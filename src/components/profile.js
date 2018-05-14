@@ -8,7 +8,7 @@ class Profile extends Component {
   renderProfile() {
     const user = this.props.profile.data.user;
     const quizMetaData = this.props.profile.data.quiz;
-    console.log(user, quizMetaData);
+    // console.log(user, quizMetaData);
     return (
       <div className='container'>
         <div className='header'> Header </div>

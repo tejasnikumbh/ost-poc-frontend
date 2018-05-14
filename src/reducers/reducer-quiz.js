@@ -1,5 +1,5 @@
 import React from 'react';
-import {VIEW_PROFILE} from './../actions/index';
+import {FETCH_QUIZ} from './../actions/index';
 
 export default function(state = {data: {}, isAuthenticated: false}, action) {
   // In case of failed authentication
@@ -12,7 +12,8 @@ export default function(state = {data: {}, isAuthenticated: false}, action) {
 
   // In case of successful authentication
   switch(action.type) {
-    case VIEW_PROFILE:
+    case FETCH_QUIZ:
+      console.log(action.payload.data);
       var newState = {};
       newState.data = action.payload.data;
       newState.isAuthenticated = true;
