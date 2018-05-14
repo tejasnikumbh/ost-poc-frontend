@@ -22,3 +22,8 @@ button.signup {
 button.login {
   margin-left: 16px;
 }
+
+a.btn-link, a.btn-link:hover {
+  color: white;
+  text-decoration: none;
+}
