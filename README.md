@@ -11,8 +11,8 @@
 [x] Storage for maintaining user logged in
 [x] Error showing on incorrect LOGIN
 [x] Make profile page private
-[ ] Render quiz data for a quiz
-[ ] Complete submit quiz functionality and make sure stored in BE
+[x] Render quiz data for a quiz
+[x] Complete submit quiz functionality + BE support
 [ ] Make loader for signup and login loading
 [ ] Logout functionality
 [ ] Forgot password functionality
