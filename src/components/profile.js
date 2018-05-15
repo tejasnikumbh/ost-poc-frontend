@@ -1,9 +1,14 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchProfile, VIEW_PROFILE} from './../actions/index';
-import {Link} from 'react-router-dom';
+import {fetchProfile, logout} from './../actions/index';
+import {Link, Redirect} from 'react-router-dom';
 
 class Profile extends Component {
+
+  logoutClicked() {
+    const token = sessionStorage.getItem('x-auth');
+    this.props.logout(token);
+  }
 
   renderProfile() {
     const user = this.props.profile.data.user;
@@ -24,6 +29,7 @@ class Profile extends Component {
         <div className='detail-item'>
             <Link to="/quiz/instruction"> {quizMetaData.title} </Link>
         </div>
+        <button onClick={this.logoutClicked.bind(this)} > Logout </button>
         </div>
       </div>
     );
@@ -31,27 +37,39 @@ class Profile extends Component {
 
   componentDidMount() {
     const token = sessionStorage.getItem('x-auth');
+    if(!token) { return }
     this.props.fetchProfile(token);
   }
 
   render() {
-    // Case when fetching profile
-    if(_.isEmpty(this.props.profile.data) &&
-    !this.props.profile.isAuthenticated) {
+    // console.log("REREnvder");
+    // Case when fetching profile and not authenticated
+    // if(_.isEmpty(this.props.profile.data) &&
+    // !this.props.profile.isAuthenticated) {
+    //   return (<div> Loading... </div>);
+    // }
+    // // Case when fetched profile but not authenticated
+    // if(!_.isEmpty(this.props.profile.data) &&
+    // !this.props.profile.isAuthenticated) {
+    //   return (<div> 401 Access Unauthorized </div>);
+    // }
+    // Correct access
+    if(!sessionStorage.getItem('x-auth')) {
+      return (
+        <Redirect to="/login"/>
+      );
+    }
+
+    if(_.isEmpty(this.props.profile.data)) {
       return (<div> Loading... </div>);
     }
-    // Case when unauthorized access
-    if(!_.isEmpty(this.props.profile.data) &&
-    !this.props.profile.isAuthenticated) {
-      return (<div> 401 Access Unauthorized </div>);
-    }
-    // Correct access
+
     return this.renderProfile();
   }
 }
 
-function mapStateToProps({profile}) {
-  return {profile}
+function mapStateToProps({user, profile}) {
+  return {user, profile}
 }
 
-export default connect(mapStateToProps, {fetchProfile})(Profile);
+export default connect(mapStateToProps, {fetchProfile, logout})(Profile);

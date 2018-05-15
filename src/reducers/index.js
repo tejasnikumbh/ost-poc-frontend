@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { reducer as QuizFormReducer } from 'redux-form';
+import { reducer as FormReducer } from 'redux-form';
 
 import UserReducer from './reducer-user';
 import ProfileReducer from './reducer-profile';
@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   user: UserReducer,
   profile: ProfileReducer,
   quiz: QuizReducer,
-  form: QuizFormReducer
+  form: FormReducer
 });
 
 export default rootReducer;

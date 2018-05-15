@@ -1,19 +1,35 @@
 import React,{Component} from 'react';
-import {fetchQuiz, submitQuiz} from './../actions/index';
+import {fetchProfile, fetchQuiz, submitQuiz} from './../actions/index';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
+import {Redirect} from 'react-router-dom';
 
 import _ from 'lodash';
 
 class QuizContent extends Component {
   // For auth population and quiz meta data
   componentDidMount() {
-    if(!this.props.quiz.isAuthenticated &&
-      !_.isEmpty(this.props.profile.data)) {
-      const token = sessionStorage.getItem('x-auth');
-      const quizMetaData = this.props.profile.data.quiz;
-      this.props.fetchQuiz(token, quizMetaData._id);
-    }
+    const token = sessionStorage.getItem('x-auth');
+    if(!token) { return }
+    // if(!this.props.profile.data.quiz) {
+    //   this.props.fetchProfile(token, () => {
+    //     const quizMetaData = this.props.profile.data.quiz;
+    //     this.props.fetchQuiz(token, quizMetaData._id);
+    //   });
+    // }
+    // console.log(this.props.profile.data);
+    // if(_.isEmpty(this.props.profile.data)) {
+    //   const token = sessionStorage.getItem('x-auth');
+    //   if(!token) { return }
+    //   const boundFunction = this.fetchQuizData.bind(this);
+    //   this.props.fetchProfile(token, boundFunction(token));
+    // }
+    this.fetchQuizData(token);
+  }
+
+  fetchQuizData(token) {
+    const quizMetaData = this.props.profile.data.quiz;
+    this.props.fetchQuiz(token, quizMetaData._id);
   }
 
   renderChoice(question, questionIndex) {
@@ -58,18 +74,31 @@ class QuizContent extends Component {
   }
 
   render() {
-
-    // Case when fetching profile
-    if(_.isEmpty(this.props.quiz.data) &&
-    !this.props.quiz.isAuthenticated) {
-      return (<div> Loading... </div>);
+    if(!sessionStorage.getItem('x-auth')) {
+      return (
+        <Redirect to="/login"/>
+      );
     }
 
-    // Case when unauthorized access
-    if(!_.isEmpty(this.props.quiz.data) &&
-    !this.props.quiz.isAuthenticated) {
-      return (<div> 401 Access Unauthorized </div>);
+    // console.log(this.props.profile.data);
+    if(_.isEmpty(this.props.profile.data)) {
+      return(<div> Loading... </div>);
     }
+
+    if(_.isEmpty(this.props.quiz.data)) {
+      return(<div> Loading... </div>);
+    }
+    // Case when not authenticated and quiz is empty
+    // if(_.isEmpty(this.props.quiz.data) &&
+    // !this.props.quiz.isAuthenticated) {
+    //   return (<div> Loading... </div>);
+    // }
+    //
+    // // Case when not authenticated and quiz is not empty(with error)
+    // if(!_.isEmpty(this.props.quiz.data) &&
+    // !this.props.quiz.isAuthenticated) {
+    //   return (<div> 401 Access Unauthorized </div>);
+    // }
     // Correct access
     return this.renderQuiz();
   }
@@ -100,4 +129,4 @@ function mapStateToProps({profile, quiz}) {
 export default reduxForm({
   validate,
   form: "QuizAnswersForm"
-})(connect(mapStateToProps, {fetchQuiz, submitQuiz})(QuizContent));
+})(connect(mapStateToProps, {fetchProfile, fetchQuiz, submitQuiz})(QuizContent));

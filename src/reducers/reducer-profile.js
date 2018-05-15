@@ -1,12 +1,12 @@
 import React from 'react';
 import {VIEW_PROFILE} from './../actions/index';
 
-export default function(state = {data: {}, isAuthenticated: false}, action) {
+export default function(state = {data: {}, error: false}, action) {
   // In case of failed authentication
   if(action.error) {
     var newState = {};
     newState.data = action.payload;
-    newState.isAuthenticated = false;
+    newState.error = true;
     return newState;
   }
 
@@ -15,7 +15,7 @@ export default function(state = {data: {}, isAuthenticated: false}, action) {
     case VIEW_PROFILE:
       var newState = {};
       newState.data = action.payload.data;
-      newState.isAuthenticated = true;
+      newState.error = false;
       return newState;
     default:
       return state;

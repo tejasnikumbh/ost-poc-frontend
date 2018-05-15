@@ -2,10 +2,13 @@ import axios from 'axios';
 
 export const SIGN_UP = 'SIGN_UP';
 export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
 
 export const VIEW_PROFILE = 'VIEW_PROFILE';
 export const FETCH_QUIZ = 'FETCH_QUIZ';
 export const SUBMIT_QUIZ = 'SUBMIT_QUIZ';
+
+const EmptyFunction = () => {};
 
 const ROOT_URL = "";
 
@@ -34,11 +37,26 @@ export function login(email, password) {
   }
 }
 
-export function fetchProfile(authToken) {
+export function logout(authToken) {
+  const request = axios.delete('http://localhost:3000/users/logout', {
+    headers: {
+      'x-auth': authToken
+    }
+  });
+  return {
+    type: LOGOUT,
+    payload: request
+  }
+}
+
+export function fetchProfile(authToken, callback = EmptyFunction) {
   const request = axios.get('http://localhost:3000/users/profile', {
     headers: {
       'x-auth': authToken
     }
+  }).then((data) => {
+    callback();
+    return data;
   });
   return {
     type: VIEW_PROFILE,

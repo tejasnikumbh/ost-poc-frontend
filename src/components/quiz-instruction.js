@@ -1,11 +1,18 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchProfile} from './../actions/index';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
+
+import _ from 'lodash';
 
 class QuizInstruction extends Component {
 
   renderQuizInstruction() {
+    // console.log(this.props.profile.data);
+    if(_.isEmpty(this.props.profile.data)) {
+      return(<div> Loading... </div>);
+    }
+
     const quiz = this.props.profile.data.quiz;
     return (
       <div className='container'>
@@ -19,6 +26,8 @@ class QuizInstruction extends Component {
           evaluatiom algorithm. The algorithm takes a variety of
           factors into account, so try not to cheat. The quiz is
           timed as well, so the faster you can answer, the better.
+          <br/>
+          <b> NOTE:- DO NOT REFRESH WHILE ANSWERING THE QUIZ </b>
         </div>
         <div className='title'> Specifics </div>
         <div className='detail-item'>
@@ -38,18 +47,37 @@ class QuizInstruction extends Component {
   }
 
   // For auth population and quiz meta data
+  // componentDidMount() {
+  //   if(!this.props.profile.isAuthenticated) {
+  //     const token = sessionStorage.getItem('x-auth');
+  //     this.props.fetchProfile(token);
+  //   }
+  // }
+
   componentDidMount() {
-    if(!this.props.profile.isAuthenticated) {
-      const token = sessionStorage.getItem('x-auth');
-      this.props.fetchProfile(token);
-    }
+    const token = sessionStorage.getItem('x-auth');
+    if(!token) { return }
+    this.props.fetchProfile(token);
   }
 
   render() {
-    // Case when unauthorized access
-    if(!this.props.profile.isAuthenticated) {
-      return (<div> 401 Access Unauthorized </div>);
+    // Case when fetching profile and not authenticated
+    // if(_.isEmpty(this.props.profile.data) &&
+    // !this.props.profile.isAuthenticated) {
+    //   return (<div> Loading... </div>);
+    // }
+    // Case when fetched profile but not authenticated
+    // if(!_.isEmpty(this.props.profile.data) &&
+    // !this.props.profile.isAuthenticated) {
+    //   return (<div> 401 Access Unauthorized </div>);
+    // }
+
+    if(!sessionStorage.getItem('x-auth')) {
+      return (
+        <Redirect to="/login"/>
+      );
     }
+
     return this.renderQuizInstruction();
   }
 }

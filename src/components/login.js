@@ -13,10 +13,14 @@ class Login extends Component {
   onSubmit(values) {
     switch(values.button) {
       case 'signup':
-        this.props.signup(values.email, values.password);
+        this.props.signup(values.email, values.password, (token) => {
+          sessionStorage.setItem('x-auth', token);
+        });
         return;
       case 'login':
-        this.props.login(values.email, values.password);
+        this.props.login(values.email, values.password, (token) => {
+          sessionStorage.setItem('x-auth', token);
+        });
         return;
       default:
     }
@@ -40,8 +44,8 @@ class Login extends Component {
 
   render() {
     // Redirect to profile in case already logged in
-    const sessionAuthToken = sessionStorage.getItem('x-auth');
-    if(!_.isEmpty(this.props.user.data) || sessionAuthToken != null) {
+    const token = sessionStorage.getItem('x-auth');
+    if(token) {
       return <Redirect to="/profile"/>;
     }
 

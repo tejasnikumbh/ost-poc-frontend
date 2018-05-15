@@ -1,5 +1,5 @@
 import React from 'react';
-import {SIGN_UP, LOGIN} from './../actions/index';
+import {SIGN_UP, LOGIN, LOGOUT} from './../actions/index';
 
 export default function(
   state = { data: {}, action: null, error: false }, action) {
@@ -19,6 +19,10 @@ export default function(
     case LOGIN:
       token = action.payload.headers['x-auth'];
       sessionStorage.setItem('x-auth', token);
+      newState.data = action.payload.data;
+      return newState;
+    case LOGOUT:
+      sessionStorage.removeItem('x-auth');
       newState.data = action.payload.data;
       return newState;
     default:
