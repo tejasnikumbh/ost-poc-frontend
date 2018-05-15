@@ -14,24 +14,30 @@ class QuizContent extends Component {
     }
   }
 
-  renderQuestion(field) {
-    return (
-      <div className='question-title' key={field.question._id}>
-        { field.question.title }
-      </div>
-    );
+  renderChoice(question, questionIndex) {
+    return _.map(question.choices, (choice, choiceIndex) => {
+      return (
+        <label key={choice}>
+          <Field name={`Question-${questionIndex}`}
+          component="input"
+          type="radio"
+          value={`${choiceIndex}`}/> {choice}
+        </label>
+      );
+    });
   }
 
   renderQuestions() {
     const quiz = this.props.quiz.data;
-    return _.map(quiz.questions, question => {
+
+    return _.map(quiz.questions, (question, index) => {
       return (
-        <Field
-          question={question}
-          name={question._id}
-          key={question._id}
-          component={this.renderQuestion}
-        />
+        <div key={question._id}>
+          <label>{question.title}</label>
+          <div>
+            {this.renderChoice(question, index)}
+          </div>
+        </div>
       );
     });
   }
@@ -65,8 +71,9 @@ class QuizContent extends Component {
     return this.renderQuiz();
   }
 
-  onSubmit() {
+  onSubmit(values) {
     console.log('Submitted!');
+    console.log(values);
   }
 }
 
