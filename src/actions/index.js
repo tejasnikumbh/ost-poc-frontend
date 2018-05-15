@@ -5,6 +5,7 @@ export const LOGIN = 'LOGIN';
 
 export const VIEW_PROFILE = 'VIEW_PROFILE';
 export const FETCH_QUIZ = 'FETCH_QUIZ';
+export const SUBMIT_QUIZ = 'SUBMIT_QUIZ';
 
 const ROOT_URL = "";
 
@@ -45,14 +46,26 @@ export function fetchProfile(authToken) {
   }
 }
 
-export function fetchQuiz(authToken) {
-  const request = axios.get('http://localhost:3000/quiz', {
+export function fetchQuiz(authToken, id) {
+  const request = axios.get(`http://localhost:3000/quiz/${id}`, {
     headers: {
       'x-auth': authToken
     }
   });
   return {
     type: FETCH_QUIZ,
+    payload: request
+  }
+}
+
+export function submitQuiz(authToken, body, callback) {
+  const request = axios.post(`http://localhost:3000/quiz/${body._id}`, body, {
+    headers: {
+      'x-auth': authToken
+    }
+  }).then(() => callback());
+  return {
+    type: SUBMIT_QUIZ,
     payload: request
   }
 }

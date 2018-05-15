@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {fetchQuiz} from './../actions/index';
+import {fetchQuiz, submitQuiz} from './../actions/index';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 
@@ -8,9 +8,11 @@ import _ from 'lodash';
 class QuizContent extends Component {
   // For auth population and quiz meta data
   componentDidMount() {
-    if(!this.props.quiz.isAuthenticated) {
+    if(!this.props.quiz.isAuthenticated &&
+      !_.isEmpty(this.props.profile.data)) {
       const token = sessionStorage.getItem('x-auth');
-      this.props.fetchQuiz(token);
+      const quizMetaData = this.props.profile.data.quiz;
+      this.props.fetchQuiz(token, quizMetaData._id);
     }
   }
 
@@ -29,7 +31,6 @@ class QuizContent extends Component {
 
   renderQuestions() {
     const quiz = this.props.quiz.data;
-
     return _.map(quiz.questions, (question, index) => {
       return (
         <div key={question._id}>
@@ -57,11 +58,13 @@ class QuizContent extends Component {
   }
 
   render() {
+
     // Case when fetching profile
     if(_.isEmpty(this.props.quiz.data) &&
     !this.props.quiz.isAuthenticated) {
       return (<div> Loading... </div>);
     }
+
     // Case when unauthorized access
     if(!_.isEmpty(this.props.quiz.data) &&
     !this.props.quiz.isAuthenticated) {
@@ -72,8 +75,16 @@ class QuizContent extends Component {
   }
 
   onSubmit(values) {
-    console.log('Submitted!');
-    console.log(values);
+
+    const token = sessionStorage.getItem('x-auth');
+    var body = { _id: this.props.quiz.data._id, answers: [] };
+    for (var key in values) {
+      body.answers = body.answers.concat([values[key]]);
+    }
+
+    this.props.submitQuiz(token, body, () => {
+      this.props.history.push("/thankyou");
+    });
   }
 }
 
@@ -82,11 +93,11 @@ function validate() {
   return errors;
 }
 
-function mapStateToProps({quiz}) {
-  return {quiz};
+function mapStateToProps({profile, quiz}) {
+  return {profile, quiz};
 }
 
 export default reduxForm({
   validate,
   form: "QuizAnswersForm"
-})(connect(mapStateToProps, {fetchQuiz})(QuizContent));
+})(connect(mapStateToProps, {fetchQuiz, submitQuiz})(QuizContent));

@@ -13,6 +13,8 @@
 [x] Make profile page private
 [x] Render quiz data for a quiz
 [x] Complete submit quiz functionality + BE support
+[x] Thankyou page for submission of quiz
+[ ] Privatize quiz routes
 [ ] Make loader for signup and login loading
 [ ] Logout functionality
 [ ] Forgot password functionality
