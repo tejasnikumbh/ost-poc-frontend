@@ -2,12 +2,12 @@
 - Front end for the DQuiz POC for OST KIT Alpha Developer Phase II Program.
 - Built in React JS + Redux
 
-### Installation Instructions
+## Installation Instructions
 ```
 > npm install
 > npm start
 ```
-### Todo
+## Todo
 - [x] Storage for maintaining user logged in
 - [x] Error showing on incorrect LOGIN
 - [x] Make profile page private
@@ -25,7 +25,7 @@
 - [ ] Forgot password functionality
 - [ ] Replace sessionStorage with localStorage
 
-### Author
+## Author
 - Tejas Nikumbh
   - Email: tejnikumbh@gmail.com
   - Skype: tjnikumbh
