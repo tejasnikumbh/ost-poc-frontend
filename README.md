@@ -7,23 +7,23 @@
 > npm install
 > npm start
 ```
-### To-do list
-[x] Storage for maintaining user logged in
-[x] Error showing on incorrect LOGIN
-[x] Make profile page private
-[x] Render quiz data for a quiz
-[x] Complete submit quiz functionality + BE support
-[x] Thankyou page for submission of quiz
-[x] Privatize quiz routes
-[x] Add refresh functionality for quiz
-[x] Style front end elements
-[ ] Performance front end
-[ ] Modal for login and sign up errors
-[ ] Write tests
-[ ] Make loader for signup and login loading
-[ ] Logout functionality
-[ ] Forgot password functionality
-[ ] Replace sessionStorage with localStorage
+### Todo
+- [x] Storage for maintaining user logged in
+- [x] Error showing on incorrect LOGIN
+- [x] Make profile page private
+- [x] Render quiz data for a quiz
+- [x] Complete submit quiz functionality + BE support
+- [x] Thankyou page for submission of quiz
+- [x] Privatize quiz routes
+- [x] Add refresh functionality for quiz
+- [x] Style front end elements
+- [ ] Performance front end
+- [ ] Modal for login and sign up errors
+- [ ] Write tests
+- [ ] Make loader for signup and login loading
+- [ ] Logout functionality
+- [ ] Forgot password functionality
+- [ ] Replace sessionStorage with localStorage
 
 ### Author
 - Tejas Nikumbh
