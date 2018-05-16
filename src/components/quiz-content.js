@@ -43,12 +43,13 @@ class QuizContent extends Component {
   renderChoice(question, questionIndex) {
     return _.map(question.choices, (choice, choiceIndex) => {
       return (
-        <label key={choice}>
+        <div className='question-choice' key={choice}>
           <Field name={`Question-${questionIndex}`}
+          className="choice-button"
           component="input"
           type="radio"
           value={`${choiceIndex}`}/> {choice}
-        </label>
+        </div>
       );
     });
   }
@@ -58,8 +59,8 @@ class QuizContent extends Component {
     return _.map(quiz.questions, (question, index) => {
       return (
         <div key={question._id}>
-          <label>{question.title}</label>
-          <div>
+          <div className='question-title'>{question.title}</div>
+          <div className='question-choices'>
             {this.renderChoice(question, index)}
           </div>
         </div>

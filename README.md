@@ -16,7 +16,8 @@
 [x] Thankyou page for submission of quiz
 [x] Privatize quiz routes
 [x] Add refresh functionality for quiz
-[ ] Style front end elements
+[x] Style front end elements
+[ ] Performance front end
 [ ] Modal for login and sign up errors
 [ ] Write tests
 [ ] Make loader for signup and login loading

@@ -11,15 +11,22 @@ class Thankyou extends Component {
     }
 
     return(
-      <div className="container">
-        <div className="content">
-          Thank You for taking the quiz! Scores will be updated soon.
+      <div className='sub-container-quiz'>
+        <div className='header'> Quiz </div>
+        <div className='body'>
+          <div className='title'> Thankyou </div>
+          <div className='content'>
+            Thank You for taking the quiz! Scores will be updated soon.
+          </div>
         </div>
-        <div>
-          <Link to='/profile'> Back to profile </Link>
+        <div className='spacer'></div>
+        <div className='sub-container-btn' style={{textAlign:'left'}}>
+          <Link to={`/profile`}>
+            <button className='btn-custom'> Back to Profile </button>
+          </Link>
         </div>
       </div>
-      );
+    );
   }
 }
 

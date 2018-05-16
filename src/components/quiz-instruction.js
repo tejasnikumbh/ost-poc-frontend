@@ -69,17 +69,15 @@ class QuizInstruction extends Component {
           <div className='half-width'>
             <div className='title'> Note </div>
             <div className="content">
-              <b>Do not refresh </b>while taking the quiz. Each refresh will
-              cause the paticipation fee to be deducted again as a penalty.
-              If you run out of tokens while doing this, you will not be
-              able to complete the quiz.
+              <b>Do not refresh or navigate </b>while taking the quiz. Each
+              refresh will cause the paticipation fee to be deducted again as a
+              penalty. If you run out of tokens while doing this, you will not
+              be able to complete the quiz. 
             </div>
           </div>
-
-
           <div className='full-width'><div className='spacer'></div></div>
           <div className='full-width'>
-            <div className='sub-container-btn'>
+            <div className='sub-container-btn' style={{textAlign:'left'}}>
               <Link to={`/quiz/${quiz._id}`}>
                 <button className='btn-custom'> Take Quiz </button>
               </Link>
