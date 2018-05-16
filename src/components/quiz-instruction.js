@@ -26,8 +26,17 @@ class QuizInstruction extends Component {
           evaluatiom algorithm. The algorithm takes a variety of
           factors into account, so try not to cheat. The quiz is
           timed as well, so the faster you can answer, the better.
-          <br/>
-          <b> NOTE:- DO NOT REFRESH WHILE ANSWERING THE QUIZ </b>
+          <div className="note">
+            <div className="note-title">
+              DO NOT REFRESH
+            </div>
+            <div className="note-content">
+              Do not refresh while taking the quiz. Each refresh will
+              cause the paticipation fee to be deducted again as a penalty.
+              If you run out of tokens while doing this, you will not be
+              able to complete the quiz.
+            </div>
+          </div>
         </div>
         <div className='title'> Specifics </div>
         <div className='detail-item'>
