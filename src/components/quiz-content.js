@@ -71,12 +71,18 @@ class QuizContent extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div className='container'>
-        <div className='header'> Header </div>
+      <div className='sub-container-quiz'>
+        <div className='full-width'>
+          <div className='header'> Quiz </div>
+        </div>
+        <div className='full-width'>
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             { this.renderQuestions() }
-          <button type="submit" className="btn btn-primary">Submit</button>
+            <div className='sub-container-btn'>
+              <button type="submit" className="btn-custom">Submit</button>
+            </div>
           </form>
+        </div>
       </div>
     );
   }
