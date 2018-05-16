@@ -7,17 +7,8 @@
 > npm install
 > npm start
 ```
-## Todo
-- [x] Storage for maintaining user logged in
-- [x] Error showing on incorrect LOGIN
-- [x] Make profile page private
-- [x] Render quiz data for a quiz
-- [x] Complete submit quiz functionality + BE support
-- [x] Thankyou page for submission of quiz
-- [x] Privatize quiz routes
-- [x] Add refresh functionality for quiz
-- [x] Style front end elements
-- [ ] Performance front end
+# Todo
+- [ ] Performance of user front end code
 - [ ] Modal for login and sign up errors
 - [ ] Write tests
 - [ ] Make loader for signup and login loading
@@ -25,7 +16,7 @@
 - [ ] Forgot password functionality
 - [ ] Replace sessionStorage with localStorage
 
-## Author
+# Author
 - Tejas Nikumbh
   - Email: tejnikumbh@gmail.com
   - Skype: tjnikumbh
