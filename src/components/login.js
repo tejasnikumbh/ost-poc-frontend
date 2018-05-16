@@ -56,7 +56,7 @@ class Login extends Component {
     const actionTaken = this.props.user.action;
 
     return(
-      <div className="sub-container">
+      <div className="sub-container-login">
           <div className='form-title'>
             Quiz
           </div>
