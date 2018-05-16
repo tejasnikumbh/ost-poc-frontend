@@ -14,7 +14,9 @@
 [x] Render quiz data for a quiz
 [x] Complete submit quiz functionality + BE support
 [x] Thankyou page for submission of quiz
-[ ] Privatize quiz routes
+[x] Privatize quiz routes
+[ ] Style front end elements
+[ ] Add refresh functionality for quiz
 [ ] Make loader for signup and login loading
 [ ] Logout functionality
 [ ] Forgot password functionality

@@ -8,8 +8,6 @@ export const VIEW_PROFILE = 'VIEW_PROFILE';
 export const FETCH_QUIZ = 'FETCH_QUIZ';
 export const SUBMIT_QUIZ = 'SUBMIT_QUIZ';
 
-const EmptyFunction = () => {};
-
 const ROOT_URL = "";
 
 export function signup(email, password) {
@@ -49,14 +47,15 @@ export function logout(authToken) {
   }
 }
 
-export function fetchProfile(authToken, callback = EmptyFunction) {
+export function fetchProfile(authToken) {
   const request = axios.get('http://localhost:3000/users/profile', {
     headers: {
       'x-auth': authToken
     }
   }).then((data) => {
-    callback();
-    return data;
+    return Promise.resolve(data);
+  }).catch((err) => {
+    return Promise.reject(err);
   });
   return {
     type: VIEW_PROFILE,

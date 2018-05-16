@@ -24,12 +24,20 @@ class QuizContent extends Component {
     //   const boundFunction = this.fetchQuizData.bind(this);
     //   this.props.fetchProfile(token, boundFunction(token));
     // }
-    this.fetchQuizData(token);
-  }
-
-  fetchQuizData(token) {
-    const quizMetaData = this.props.profile.data.quiz;
-    this.props.fetchQuiz(token, quizMetaData._id);
+    if(_.isEmpty(this.props.profile.data)) {
+      var quizContentComponent = this;
+      this.props.fetchProfile(token)
+      .then((action) => {
+        const quizId = action.payload.data.quiz._id;
+        this.props.fetchQuiz(token, quizId);
+      }).catch((err) => {
+        console.log(err);
+      })
+      return;
+    }
+    const quizId = this.props.profile.data.quiz._id;
+    this.props.fetchQuiz(token, quizId);
+    return;
   }
 
   renderChoice(question, questionIndex) {
