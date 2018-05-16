@@ -56,29 +56,34 @@ class Login extends Component {
     const actionTaken = this.props.user.action;
 
     return(
-      <div className="container">
-          <Field
-            name="email"
-            type="text"
-            placeholder="Email..."
-            component={this.renderField}/>
-          <Field
-            name="password"
-            type="password"
-            placeholder="Password..."
-            component={this.renderField}/>
-          <button className="btn btn-primary signup" onClick={handleSubmit(values =>
-            this.onSubmit({
-              ...values,
-              button: 'signup'
-            }))}>Sign Up</button>
-          <button className="btn btn-primary login" onClick={handleSubmit(values =>
-            this.onSubmit({
-              ...values,
-              button: 'login'
-            }))}>Login</button>
-          <div className="text-help spaced">
-            {this.props.user.error ? `*Error with ${actionTaken} - Check credentials` : ``}
+      <div className="sub-container">
+          <div className='form-title'>
+            Quiz
+          </div>
+          <div className='form-content'>
+            <Field
+              name="email"
+              type="text"
+              placeholder="Email..."
+              component={this.renderField}/>
+            <Field
+              name="password"
+              type="password"
+              placeholder="Password..."
+              component={this.renderField}/>
+            <button className="btn btn-primary form-button" onClick={handleSubmit(values =>
+              this.onSubmit({
+                ...values,
+                button: 'signup'
+              }))}>Sign Up</button>
+            <button className="btn btn-primary form-button" onClick={handleSubmit(values =>
+              this.onSubmit({
+                ...values,
+                button: 'login'
+              }))}>Login</button>
+            <div className="text-help spaced">
+              {this.props.user.error ? `*Error with ${actionTaken} - Check credentials` : ``}
+            </div>
           </div>
       </div>
     );

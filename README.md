@@ -17,6 +17,7 @@
 [x] Privatize quiz routes
 [x] Add refresh functionality for quiz
 [ ] Style front end elements
+[ ] Write tests
 [ ] Make loader for signup and login loading
 [ ] Logout functionality
 [ ] Forgot password functionality

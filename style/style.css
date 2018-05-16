@@ -1,5 +1,33 @@
-.container {
-  padding: 20px;
+.sub-container {
+  background:linear-gradient(0deg,rgba(230,182,76,0.85),rgba(230,182,76,0.85))
+  ,url('/resources/login_background.png');
+
+  background-size: 100% auto;
+  background-position: center;
+
+  text-align: center;
+  border-radius: 16px;
+  overflow: hidden;
+  margin:10%;
+}
+
+
+.form-title {
+  color: #FFFFFF;
+  font-size: 4.5em;
+  font-weight: 500;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.form-button {
+  margin: 20px 10px 20px 10px;
 }
 
 div.text-help {
