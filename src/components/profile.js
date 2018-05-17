@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchProfile, logout} from './../actions/index';
+import {fetchProfile, requestTokens, logout} from './../actions/index';
 import {Link, Redirect} from 'react-router-dom';
 
 class Profile extends Component {
@@ -8,6 +8,11 @@ class Profile extends Component {
   logoutClicked() {
     const token = sessionStorage.getItem('x-auth');
     this.props.logout(token);
+  }
+
+  requestTokensClicked() {
+    const token = sessionStorage.getItem('x-auth');
+    this.props.requestTokens(token);
   }
 
   renderProfile() {
@@ -18,55 +23,75 @@ class Profile extends Component {
       <div className='sub-container-quiz'>
         <div className='header'> Quiz </div>
         <div className='body'>
-          <div className='title'> User Details </div>
-          <div className='content'>
-              <div className='content-item'> Email: {user.email} </div>
-              <div className='content-item'>
-                Token Balance: {user.ost_details.token_balance}
-              </div>
+          <div className='half-width'>
+            <div className='title'> User Details </div>
+            <div className='content'>
+                <div className='content-item'> Email: {user.email} </div>
+                <div className='content-item'>
+                  Token Balance: {user.ost_details.token_balance}
+                </div>
+                <div className='content-item'>
+                  Earned via airdrop: {user.ost_details.total_airdropped_tokens}
+                </div>
+            </div>
           </div>
-          <div className='title'> Quizzes Available </div>
-          <div className='content'>
-            <Link to="/quiz/instruction" style={{ textDecoration: 'none' }}>
-              <div className='container-quiz-item'>
-                <div className='label-title'>
-                  {quizMetaData.title}
-                </div>
-                <div className='label-tag'>
-                  {quizMetaData.participation_fee} DPLT
-                </div>
-              </div>
-            </Link>
+          <div className='half-width'>
+            <div className='title'> Earn Tokens </div>
+            <div className='content'>
+              <button onClick={this.requestTokensClicked.bind(this)}
+                className='btn-custom-2'>
+                Request Tokens
+              </button>
+            </div>
           </div>
-          <div className='content'>
-            <Link to="/quiz/instruction" style={{ textDecoration: 'none' }}>
-              <div className='container-quiz-item'>
-                <div className='label-title'>
-                  {quizMetaData.title}
+          <div className='full-width'>
+            <div className='title'> Quizzes Available </div>
+            <div className='content'>
+              <Link to="/quiz/instruction" style={{ textDecoration: 'none' }}>
+                <div className='container-quiz-item'>
+                  <div className='label-title'>
+                    {quizMetaData.title}
+                  </div>
+                  <div className='label-tag'>
+                    {quizMetaData.participation_fee} DPLT
+                  </div>
                 </div>
-                <div className='label-tag'>
-                  {quizMetaData.participation_fee} DPLT
+              </Link>
+            </div>
+            <div className='content'>
+              <Link to="/quiz/instruction" style={{ textDecoration: 'none' }}>
+                <div className='container-quiz-item'>
+                  <div className='label-title'>
+                    {quizMetaData.title}
+                  </div>
+                  <div className='label-tag'>
+                    {quizMetaData.participation_fee} DPLT
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
+            <div className='content'>
+              <Link to="/quiz/instruction" style={{ textDecoration: 'none' }}>
+                <div className='container-quiz-item'>
+                  <div className='label-title'>
+                    {quizMetaData.title}
+                  </div>
+                  <div className='label-tag'>
+                    {quizMetaData.participation_fee} DPLT
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
-          <div className='content'>
-            <Link to="/quiz/instruction" style={{ textDecoration: 'none' }}>
-              <div className='container-quiz-item'>
-                <div className='label-title'>
-                  {quizMetaData.title}
-                </div>
-                <div className='label-tag'>
-                  {quizMetaData.participation_fee} DPLT
-                </div>
-              </div>
-            </Link>
+          <div className='full-width'>
+            <div className='sub-container-spacer'> ... </div>
+            <div className='sub-container-btn'>
+              <button onClick={this.logoutClicked.bind(this)}
+               className='btn-custom'>
+                Logout
+              </button>
+            </div>
           </div>
-        </div>
-        <div className='sub-container-spacer'> ... </div>
-        <div className='sub-container-btn'>
-          <button onClick={this.logoutClicked.bind(this)}
-            className='btn-custom'> Logout </button>
         </div>
       </div>
     );
@@ -109,4 +134,4 @@ function mapStateToProps({user, profile}) {
   return {user, profile}
 }
 
-export default connect(mapStateToProps, {fetchProfile, logout})(Profile);
+export default connect(mapStateToProps, {fetchProfile, requestTokens, logout})(Profile);

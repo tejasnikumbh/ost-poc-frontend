@@ -4,6 +4,7 @@ export const SIGN_UP = 'SIGN_UP';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 
+export const REQUEST_TOKENS = 'REQUEST_TOKENS';
 export const VIEW_PROFILE = 'VIEW_PROFILE';
 export const FETCH_QUIZ = 'FETCH_QUIZ';
 export const SUBMIT_QUIZ = 'SUBMIT_QUIZ';
@@ -43,6 +44,22 @@ export function logout(authToken) {
   });
   return {
     type: LOGOUT,
+    payload: request
+  }
+}
+
+export function requestTokens(authToken, body = {amount: 1}) {
+  const request = axios.post('http://localhost:3000/users/request_tokens', body, {
+    headers: {
+      'x-auth': authToken
+    }
+  }).then((data) => {
+    return Promise.resolve(data);
+  }).catch((err) => {
+    return Promise.reject(err);
+  });
+  return {
+    type: REQUEST_TOKENS,
     payload: request
   }
 }

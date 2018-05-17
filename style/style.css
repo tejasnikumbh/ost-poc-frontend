@@ -56,6 +56,7 @@
 }
 
 .sub-container-spacer {
+  margin-bottom: 20px;
   text-align: center;
   font-size: 4em;
   font-family: 'Times New Roman';
@@ -229,6 +230,31 @@
   .btn-custom {
     padding: 8px 32px 8px 32px;
     width:35%;
+  }
+}
+
+.btn-custom-2 {
+  border-radius: 8px;
+  border: 1px solid #4A90E2;
+
+  background-color:#4A90E2;
+  color: #FFF;
+
+  font-size: 1em;
+  font-family: 'Helvetica';
+  font-weight: 300;
+
+  padding: 8px 32px 8px 32px;
+  width:50%;
+  height:50px;
+}
+
+@media screen and (max-width: 1024px) {
+  .btn-custom-2 {
+    font-size: 0.9em;
+
+    padding: 8px 32px 8px 32px;
+    width:65%;
   }
 }
 
