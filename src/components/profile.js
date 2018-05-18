@@ -2,8 +2,28 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchProfile, requestTokens, logout} from './../actions/index';
 import {Link, Redirect} from 'react-router-dom';
+import Modal from 'react-awesome-modal';
 
 class Profile extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        visible : false
+    }
+  }
+
+  openModal() {
+    this.setState({
+        visible : true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+        visible : false
+    });
+  }
 
   logoutClicked() {
     const token = sessionStorage.getItem('x-auth');
@@ -12,6 +32,7 @@ class Profile extends Component {
 
   requestTokensClicked() {
     const token = sessionStorage.getItem('x-auth');
+    this.openModal();
     this.props.requestTokens(token);
   }
 
@@ -21,6 +42,18 @@ class Profile extends Component {
     // console.log(user, quizMetaData);
     return (
       <div className='sub-container-quiz'>
+
+        <Modal visible={this.state.visible}
+        width="400" height="300"
+        effect="fadeInUp"
+        onClickAway={() => this.closeModal()}>
+          <div>
+            <h1>Request Approved</h1>
+            <p>Your request for DPLT tokens has been approved. You have been granted 10 DPLT tokens</p>
+            <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+          </div>
+        </Modal>
+
         <div className='header'> Quiz </div>
         <div className='body'>
           <div className='half-width'>
