@@ -126,8 +126,12 @@ class QuizContent extends Component {
       body.answers = body.answers.concat([values[key]]);
     }
 
-    this.props.submitQuiz(token, body, () => {
+    this.props.submitQuiz(token, body)
+    .then((data) => {
+      console.log(data);
       this.props.history.push("/thankyou");
+    }).catch((e) => {
+      console.log(`Error submitting quiz ${e}`);
     });
   }
 }

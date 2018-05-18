@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class Thankyou extends Component {
   render() {
@@ -30,4 +31,8 @@ class Thankyou extends Component {
   }
 }
 
-export default Thankyou;
+function mapStateToProps({submission}) {
+  return {submission};
+}
+
+export default connect(mapStateToProps)(Thankyou);

@@ -92,12 +92,16 @@ export function fetchQuiz(authToken, id) {
   }
 }
 
-export function submitQuiz(authToken, body, callback) {
+export function submitQuiz(authToken, body) {
   const request = axios.post(`http://localhost:3000/quiz/${body._id}`, body, {
     headers: {
       'x-auth': authToken
     }
-  }).then(() => callback());
+  }).then((data) => {
+    return Promise.resolve(data);
+  }).catch((e) => {
+    return Promise.reject(e);
+  });
   return {
     type: SUBMIT_QUIZ,
     payload: request

@@ -1,8 +1,8 @@
 import React from 'react';
-import {FETCH_QUIZ} from './../actions/index';
+import {SUBMIT_QUIZ} from './../actions/index';
 
 export default function(state = {data: {}, error: false}, action) {
-  // In case of failed authentication
+  // In case of failed submission
   if(action.error) {
     var newState = {};
     newState.data = action.payload;
@@ -10,9 +10,9 @@ export default function(state = {data: {}, error: false}, action) {
     return newState;
   }
 
-  // In case of successful authentication
+  // In case of successful submission
   switch(action.type) {
-    case FETCH_QUIZ:
+    case SUBMIT_QUIZ:
       var newState = {};
       newState.data = action.payload.data;
       newState.error = false;
