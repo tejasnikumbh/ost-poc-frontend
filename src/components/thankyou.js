@@ -21,7 +21,8 @@ class Thankyou extends Component {
       return (
         <div>
         Thanks for taking the quiz. Scores have been updated. You scored a total
-        of <b>{`${submission.quiz.score}`}</b>. You were measured on time taken,
+        of <b>{`${submission.quiz.score}`} %</b>. You earned <b>
+        {`${submission.quiz.earning}`} DPLT</b>. You were measured on time taken,
         answer accuracy and other subjective parameters.
         </div>
       );
@@ -30,7 +31,8 @@ class Thankyou extends Component {
     return (
       <div>
       {submission.message} on <b> {`${properDate}`} </b> at <b> {`${properTime}`}
-      </b>.Your score for this quiz was <b> {`${submission.quiz.score}`} </b>.
+      </b>.Your score for this quiz was <b> {`${submission.quiz.score}`} %</b>.
+      You earned <b>{`${submission.quiz.earning}`} DPLT</b> on this quiz.
       Please try other quizzes.
       </div>
     );
