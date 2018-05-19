@@ -203,6 +203,7 @@ p.modal-content {
 }
 
 .container-quiz-item:hover {
+  cursor:pointer;
   border: 2px dotted #4b8bf5;
   border-radius: 8px;
   background-color: #A9C4E3;

@@ -25,6 +25,20 @@ class Profile extends Component {
     });
   }
 
+  quizAlreadyTaken() {
+      const user = this.props.profile.data.user;
+      const quiz = this.props.profile.data.quiz;
+      // No quiz taken
+      if(_.isEmpty(user.performance.quizzes)) {
+        return false;
+      }
+      // Testing if quiz is already taken
+      const quizzesAlreadyTaken = _.map(user.performance.quizzes,(q) => {
+        return q._id
+      });
+      return _.includes(quizzesAlreadyTaken, quiz._id);
+  }
+
   logoutClicked() {
     const token = sessionStorage.getItem('x-auth');
     this.props.logout(token);
@@ -34,6 +48,11 @@ class Profile extends Component {
     const token = sessionStorage.getItem('x-auth');
     this.openModal();
     this.props.requestTokens(token);
+  }
+
+  navigateToQuizInstructionIfNotTaken() {
+    const route = "/quiz/instruction";
+    this.quizAlreadyTaken() ? this.openModal() : this.props.history.push(route);
   }
 
   renderProfile() {
@@ -91,16 +110,15 @@ class Profile extends Component {
           <div className='full-width'>
             <div className='title'> Quizzes Available </div>
             <div className='content'>
-              <Link to="/quiz/instruction" style={{ textDecoration: 'none' }}>
-                <div className='container-quiz-item'>
-                  <div className='label-title'>
-                    {quizMetaData.title}
-                  </div>
-                  <div className='label-tag red'>
-                    {quizMetaData.participation_fee} DPLT
-                  </div>
+              <div className='container-quiz-item'
+              onClick={this.navigateToQuizInstructionIfNotTaken.bind(this)}>
+                <div className='label-title'>
+                  {quizMetaData.title}
                 </div>
-              </Link>
+                <div className='label-tag red'>
+                  {quizMetaData.participation_fee} DPLT
+                </div>
+              </div>
             </div>
           </div>
           <div className='full-width'>

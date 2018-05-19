@@ -7,6 +7,7 @@ import _ from 'lodash';
 class Thankyou extends Component {
 
   renderMessage() {
+    console.log("SUBMISSION", this.props.submission);
     const submission = this.props.submission.data;
     var message = "Thanks for trying to submit a response.";
     if(_.isEmpty(submission)) {
