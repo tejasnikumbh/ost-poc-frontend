@@ -47,7 +47,7 @@ class QuizInstruction extends Component {
             <br/>
             <div className='content'>
               <div className='label-title' style={{float: 'left'}}>
-                Reward Amount
+                Reward Amount [Max]
               </div>
               <div className='label-tag red' >
                 {quiz.reward_amount} DPLT
