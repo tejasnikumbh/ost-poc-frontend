@@ -7,7 +7,6 @@ import _ from 'lodash';
 class Thankyou extends Component {
 
   renderMessage() {
-    console.log("SUBMISSION", this.props.submission);
     const submission = this.props.submission.data;
     var message = "Thanks for trying to submit a response.";
     if(_.isEmpty(submission)) {
@@ -18,17 +17,20 @@ class Thankyou extends Component {
     var properTime = getProperTime(submission.quiz.time);
 
     const alreadyTaken = submission.alreadyTaken;
-    var message = `Thanks for taking the quiz. Scores have been updated. You can
-    see your new token balance on the profile page. You were measured on time taken,
-    answer accuracy and other subjective parameters.`;
     if(!alreadyTaken) {
-      return <div> {message} </div>
+      return (
+        <div>
+        Thanks for taking the quiz. Scores have been updated. You scored a total
+        of <b>{`${submission.quiz.score}`}</b>. You were measured on time taken,
+        answer accuracy and other subjective parameters.
+        </div>
+      );
     }
 
     return (
       <div>
-      {submission.message} on <b> {`${properDate}`} </b> at <b> {`${properTime}`} </b>.
-      Your score for this quiz was <b> {`${submission.quiz.score}`} </b>.
+      {submission.message} on <b> {`${properDate}`} </b> at <b> {`${properTime}`}
+      </b>.Your score for this quiz was <b> {`${submission.quiz.score}`} </b>.
       Please try other quizzes.
       </div>
     );

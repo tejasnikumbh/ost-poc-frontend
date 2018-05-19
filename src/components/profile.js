@@ -78,6 +78,7 @@ class Profile extends Component {
   navigateToQuizInstructionClicked() {
     const route = "/quiz/instruction";
     this.quizAlreadyTaken() ? this.openAlreadyTakenModal() : this.props.history.push(route);
+
   }
 
   renderProfile() {
