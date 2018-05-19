@@ -47,10 +47,21 @@ class Profile extends Component {
         width="400" height="300"
         effect="fadeInUp"
         onClickAway={() => this.closeModal()}>
-          <div>
-            <h1>Request Approved</h1>
-            <p>Your request for DPLT tokens has been approved. You have been granted 10 DPLT tokens</p>
-            <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+          <div className='modal-container'>
+            <p className='modal-title'>Request Approved</p>
+            <div className='modal-image-container'>
+              <img className='modal-image' src='/resources/green_tick.png'/>
+            </div>
+            <p className='modal-content'>
+              Your request for DPLT tokens has been approved. You have been granted
+              10 DPLT tokens
+            </p>
+            <div className='modal-button-container'>
+              <button className='btn-modal btn-custom-blue'
+                onClick={() => this.closeModal()}>
+                  Close
+              </button>
+            </div>
           </div>
         </Modal>
 
@@ -72,7 +83,7 @@ class Profile extends Component {
             <div className='title'> Earn Tokens </div>
             <div className='content'>
               <button onClick={this.requestTokensClicked.bind(this)}
-                className='btn-custom-2'>
+                className='btn-custom-blue'>
                 Request Tokens
               </button>
             </div>

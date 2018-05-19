@@ -39,7 +39,7 @@ class QuizInstruction extends Component {
               <div className='label-title' style={{float: 'left'}}>
                 Participation Fee
               </div>
-              <div className='label-tag' >
+              <div className='label-tag purple' >
                 {quiz.participation_fee} DPLT
               </div>
             </div>
@@ -49,7 +49,7 @@ class QuizInstruction extends Component {
               <div className='label-title' style={{float: 'left'}}>
                 Reward Amount
               </div>
-              <div className='label-tag' >
+              <div className='label-tag purple' >
                 {quiz.reward_amount} DPLT
               </div>
             </div>
@@ -59,7 +59,7 @@ class QuizInstruction extends Component {
               <div className='label-title' style={{float: 'left'}}>
                 Percentage Rewarded
               </div>
-              <div className='label-tag' >
+              <div className='label-tag purple' >
                 Top {quiz.percentage_rewarded * 100} %
               </div>
             </div>
@@ -72,14 +72,14 @@ class QuizInstruction extends Component {
               <b>Do not refresh or navigate </b>while taking the quiz. Each
               refresh will cause the paticipation fee to be deducted again as a
               penalty. If you run out of tokens while doing this, you will not
-              be able to complete the quiz. 
+              be able to complete the quiz.
             </div>
           </div>
           <div className='full-width'><div className='spacer'></div></div>
           <div className='full-width'>
             <div className='sub-container-btn' style={{textAlign:'left'}}>
               <Link to={`/quiz/${quiz._id}`}>
-                <button className='btn-custom'> Take Quiz </button>
+                <button className='btn-custom-blue take-quiz'> Start Quiz </button>
               </Link>
             </div>
           </div>
