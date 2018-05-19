@@ -9,19 +9,44 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        visible : false
+        requestTokenModal: {
+          visible : false
+        },
+        alreadyTakenModal: {
+          visible: false
+        }
     }
   }
 
-  openModal() {
+  openRequestTokenModal() {
     this.setState({
-        visible : true
+        requestTokenModal : {
+          visible: true
+        }
     });
   }
 
-  closeModal() {
+  closeRequestTokenModal() {
     this.setState({
-        visible : false
+        requestTokenModal : {
+          visible : false
+        }
+    });
+  }
+
+  openAlreadyTakenModal() {
+    this.setState({
+        alreadyTakenModal : {
+          visible: true
+        }
+    });
+  }
+
+  closeAlreadyTakenModal() {
+    this.setState({
+        alreadyTakenModal : {
+          visible : false
+        }
     });
   }
 
@@ -46,13 +71,13 @@ class Profile extends Component {
 
   requestTokensClicked() {
     const token = sessionStorage.getItem('x-auth');
-    this.openModal();
+    this.openRequestTokenModal();
     this.props.requestTokens(token);
   }
 
-  navigateToQuizInstructionIfNotTaken() {
+  navigateToQuizInstructionClicked() {
     const route = "/quiz/instruction";
-    this.quizAlreadyTaken() ? this.openModal() : this.props.history.push(route);
+    this.quizAlreadyTaken() ? this.openAlreadyTakenModal() : this.props.history.push(route);
   }
 
   renderProfile() {
@@ -62,10 +87,10 @@ class Profile extends Component {
     return (
       <div className='sub-container-quiz'>
 
-        <Modal visible={this.state.visible}
+        <Modal visible={this.state.requestTokenModal.visible}
         width="400" height="300"
         effect="fadeInUp"
-        onClickAway={() => this.closeModal()}>
+        onClickAway={() => this.closeRequestTokenModal()}>
           <div className='modal-container'>
             <p className='modal-title'>Request Approved</p>
             <div className='modal-image-container'>
@@ -73,11 +98,33 @@ class Profile extends Component {
             </div>
             <p className='modal-content'>
               Your request for DPLT tokens has been approved. You have been granted
-              10 DPLT tokens
+              10 DPLT tokens shortly.
             </p>
             <div className='modal-button-container'>
               <button className='btn-modal btn-custom-blue'
-                onClick={() => this.closeModal()}>
+                onClick={() => this.closeRequestTokenModal()}>
+                  Close
+              </button>
+            </div>
+          </div>
+        </Modal>
+
+        <Modal visible={this.state.alreadyTakenModal.visible}
+        width="400" height="300"
+        effect="fadeInUp"
+        onClickAway={() => this.closeAlreadyTakenModal()}>
+          <div className='modal-container'>
+            <p className='modal-title'>Quiz Taken</p>
+            <div className='modal-image-container'>
+              <img className='modal-image' src='/resources/warning.png'/>
+            </div>
+            <p className='modal-content'>
+              You have already taken this quiz. Try participating in other
+              available quizzes to start earning DPLT.
+            </p>
+            <div className='modal-button-container'>
+              <button className='btn-modal btn-custom-blue'
+                onClick={() => this.closeAlreadyTakenModal()}>
                   Close
               </button>
             </div>
@@ -111,7 +158,7 @@ class Profile extends Component {
             <div className='title'> Quizzes Available </div>
             <div className='content'>
               <div className='container-quiz-item'
-              onClick={this.navigateToQuizInstructionIfNotTaken.bind(this)}>
+              onClick={this.navigateToQuizInstructionClicked.bind(this)}>
                 <div className='label-title'>
                   {quizMetaData.title}
                 </div>
