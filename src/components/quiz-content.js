@@ -3,10 +3,33 @@ import {fetchProfile, fetchQuiz, submitQuiz} from './../actions/index';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 import {Redirect} from 'react-router-dom';
+import Modal from 'react-awesome-modal';
 
 import _ from 'lodash';
 
 class QuizContent extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        visible : false,
+        shownOnce: false
+    }
+  }
+
+  openModal() {
+    this.setState({
+        visible : true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+        visible : false,
+        shownOnce : true
+    });
+  }
+
   // For auth population and quiz meta data
   componentDidMount() {
     const token = sessionStorage.getItem('x-auth');
@@ -73,6 +96,30 @@ class QuizContent extends Component {
 
     return (
       <div className='sub-container-quiz'>
+        <Modal visible={this.state.visible}
+        width="400" height="350"
+        effect="fadeInUp"
+        onClickAway={() => this.closeModal()}>
+          <div className='modal-container'>
+            <p className='modal-title'>Quiz Started</p>
+            <div className='modal-image-container'>
+              <img className='modal-image' src='/resources/quiz_started.png'/>
+              <img className='modal-image' src='/resources/quiz_started.png'/>
+              <img className='modal-image' src='/resources/quiz_started.png'/>
+            </div>
+            <p className='modal-content'>
+              The quiz timer has started. <b>DO NOT</b> refresh or nagivate as
+              this will cause the participation fees to be paid again. You will
+              be judged on time taken, correct answers and other factors.
+            </p>
+            <div className='modal-button-container'>
+              <button className='btn-modal btn-custom-blue'
+                onClick={() => this.closeModal()}>
+                  Close
+              </button>
+            </div>
+          </div>
+        </Modal>
         <div className='full-width'>
           <div className='header'> Quiz </div>
         </div>
@@ -80,7 +127,7 @@ class QuizContent extends Component {
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             { this.renderQuestions() }
             <div className='sub-container-btn'>
-              <button type="submit" className="btn-custom">Submit</button>
+              <button type="submit" className="btn-custom-blue btn-full-width">Submit</button>
             </div>
           </form>
         </div>
@@ -116,6 +163,12 @@ class QuizContent extends Component {
     // }
     // Correct access
     return this.renderQuiz();
+  }
+
+  componentDidUpdate() {
+    if(!this.state.visible && !this.state.shownOnce) {
+      this.openModal();
+    }
   }
 
   onSubmit(values) {

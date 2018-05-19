@@ -62,8 +62,8 @@ p.modal-content {
 }
 
 .btn-modal.btn-custom-blue {
-  background-color: #E7B741;
-  border-color: #E7B741;
+  background-color: #17a15f;
+  border-color: #17a15f;
   border-radius: 0px 0px 4px 4px;
   width: 100%;
 }
@@ -142,7 +142,7 @@ p.modal-content {
 
 .header {
   border-radius: 8px;
-  background-color: #E6B64C;
+  background-color: #ffce42;
   font-size: 2em;
   color: #FFFFFF;
   padding: 8px;
@@ -196,14 +196,14 @@ p.modal-content {
 }
 
 .container-quiz-item {
-  border: 2px solid #4A90E2;
+  border: 2px dotted #4c8bf5;
   border-radius: 8px;
-
+  color: #373a3c;
   padding: 20px;
 }
 
 .container-quiz-item:hover {
-  border: 2px solid #4A90E2;
+  border: 2px dotted #4b8bf5;
   border-radius: 8px;
   background-color: #A9C4E3;
   color: #FFFFFF;
@@ -230,7 +230,7 @@ p.modal-content {
   border-radius: 8px;
   padding:8px;
 
-  background-color: #4A90E2;
+  background-color: #4b8bf5;
   color: #FFFFFF;
 
   font-size: 0.65em;
@@ -243,6 +243,10 @@ p.modal-content {
   background-color: #9A1DF6;
 }
 
+.label-tag.red {
+  background-color: #DD5044;
+}
+
 .label-tag.green {
   background-color: #0EA352;
 }
@@ -253,7 +257,7 @@ p.modal-content {
     border-radius: 8px;
     padding:8px;
 
-    background-color: #4A90E2;
+    background-color: #4b8bf5;
     color: #FFFFFF;
 
     font-size: 0.65em;
@@ -266,9 +270,9 @@ p.modal-content {
 
 .btn-custom {
   border-radius: 16px;
-  border: 1px solid #E6B64C;
+  border: 1px solid #ffce42;
 
-  background-color:#E6B64C;
+  background-color:#ffce42;
   color: #FFF;
 
   font-size: 1em;
@@ -289,9 +293,9 @@ p.modal-content {
 
 .btn-custom-blue {
   border-radius: 8px;
-  border: 1px solid #4A90E2;
+  border: 1px solid #4b8bf5;
 
-  background-color:#4A90E2;
+  background-color:#4b8bf5;
   color: #FFF;
 
   font-size: 1em;
@@ -307,10 +311,10 @@ p.modal-content {
   opacity: 0.75;
 }
 
-.btn-custom-blue.take-quiz{
+.btn-custom-blue.btn-full-width{
   width: 100%;
-  background-color: #E6B64C;
-  border-color: #E6B64C;
+  background-color: #4b8bf5;
+  border-color: #4b8bf5;
 }
 
 @media screen and (min-width: 1024px) {

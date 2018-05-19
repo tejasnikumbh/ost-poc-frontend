@@ -39,7 +39,7 @@ class QuizInstruction extends Component {
               <div className='label-title' style={{float: 'left'}}>
                 Participation Fee
               </div>
-              <div className='label-tag purple' >
+              <div className='label-tag red' >
                 {quiz.participation_fee} DPLT
               </div>
             </div>
@@ -49,7 +49,7 @@ class QuizInstruction extends Component {
               <div className='label-title' style={{float: 'left'}}>
                 Reward Amount
               </div>
-              <div className='label-tag purple' >
+              <div className='label-tag red' >
                 {quiz.reward_amount} DPLT
               </div>
             </div>
@@ -59,7 +59,7 @@ class QuizInstruction extends Component {
               <div className='label-title' style={{float: 'left'}}>
                 Percentage Rewarded
               </div>
-              <div className='label-tag purple' >
+              <div className='label-tag red' >
                 Top {quiz.percentage_rewarded * 100} %
               </div>
             </div>
@@ -79,7 +79,7 @@ class QuizInstruction extends Component {
           <div className='full-width'>
             <div className='sub-container-btn' style={{textAlign:'left'}}>
               <Link to={`/quiz/${quiz._id}`}>
-                <button className='btn-custom-blue take-quiz'> Start Quiz </button>
+                <button className='btn-custom-blue btn-full-width'> Start Quiz </button>
               </Link>
             </div>
           </div>

@@ -96,31 +96,7 @@ class Profile extends Component {
                   <div className='label-title'>
                     {quizMetaData.title}
                   </div>
-                  <div className='label-tag'>
-                    {quizMetaData.participation_fee} DPLT
-                  </div>
-                </div>
-              </Link>
-            </div>
-            <div className='content'>
-              <Link to="/quiz/instruction" style={{ textDecoration: 'none' }}>
-                <div className='container-quiz-item'>
-                  <div className='label-title'>
-                    {quizMetaData.title}
-                  </div>
-                  <div className='label-tag'>
-                    {quizMetaData.participation_fee} DPLT
-                  </div>
-                </div>
-              </Link>
-            </div>
-            <div className='content'>
-              <Link to="/quiz/instruction" style={{ textDecoration: 'none' }}>
-                <div className='container-quiz-item'>
-                  <div className='label-title'>
-                    {quizMetaData.title}
-                  </div>
-                  <div className='label-tag'>
+                  <div className='label-tag red'>
                     {quizMetaData.participation_fee} DPLT
                   </div>
                 </div>

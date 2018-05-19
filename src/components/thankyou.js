@@ -17,7 +17,9 @@ class Thankyou extends Component {
     var properTime = getProperTime(submission.quiz.time);
 
     const alreadyTaken = submission.alreadyTaken;
-    var message = "Thanks for taking the quiz. Scores will be updated soon";
+    var message = `Thanks for taking the quiz. Scores have been updated. You can
+    see your new token balance on the profile page. You were measured on time taken,
+    answer accuracy and other subjective parameters.`;
     if(!alreadyTaken) {
       return <div> {message} </div>
     }
@@ -50,7 +52,7 @@ class Thankyou extends Component {
         <div className='spacer'></div>
         <div className='sub-container-btn' style={{textAlign:'left'}}>
           <Link to={`/profile`}>
-            <button className='btn-custom'> Back to Profile </button>
+            <button className='btn-custom-blue btn-full-width'> Back to Profile </button>
           </Link>
         </div>
       </div>
