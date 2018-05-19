@@ -13,8 +13,8 @@ class Thankyou extends Component {
         return <div> { message } </div>
     }
 
-    var properDate = getProperDate(submission.quiz.time);
-    var properTime = getProperTime(submission.quiz.time);
+    var properDate = getProperDate(submission.quiz.end_time);
+    var properTime = getProperTime(submission.quiz.end_time);
 
     const alreadyTaken = submission.alreadyTaken;
     if(!alreadyTaken) {
