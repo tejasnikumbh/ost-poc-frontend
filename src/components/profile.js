@@ -90,9 +90,16 @@ class Profile extends Component {
 
   }
 
-  renderScore() {
+  renderStats() {
     if(!this.quizAlreadyTaken()) {
-      return;
+      const quiz = this.props.profile.data.quiz;
+      return (
+        <div className='quiz-item-stats'>
+          <div className='label-tag red'>
+            Fee: {quiz.participation_fee} DPLT
+          </div>
+        </div>  
+      );
     }
 
     const user = this.props.profile.data.user;
@@ -104,8 +111,13 @@ class Profile extends Component {
     console.log(user.performance.quizzes);
     console.log(quiz._id);
     return(
-      <div className='label-tag green' style={{marginRight:'10px'}}>
-        Score: {curQuiz.score}%
+      <div className='quiz-item-stats'>
+        <div className='label-tag green' style={{marginRight:'10px'}}>
+          Score: {curQuiz.score}%
+        </div>
+        <div className='label-tag purple' style={{marginRight:'10px'}}>
+          Earned: {curQuiz.earning} DPLT
+        </div>
       </div>
     );
   }
@@ -188,17 +200,14 @@ class Profile extends Component {
             </div>
           </div>
           <div className='full-width'>
-            <div className='title'> Quizzes Available </div>
+            <div className='title'> Quizzes </div>
             <div className='content'>
               <div className='container-quiz-item'
               onClick={this.navigateToQuizInstructionClicked.bind(this)}>
                 <div className='label-title'>
                   {quizMetaData.title}
                 </div>
-                <div className='label-tag red'>
-                  Fee: {quizMetaData.participation_fee} DPLT
-                </div>
-                {this.renderScore()}
+                {this.renderStats()}
               </div>
             </div>
           </div>

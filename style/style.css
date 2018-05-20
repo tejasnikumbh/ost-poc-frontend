@@ -211,6 +211,18 @@ p.modal-content {
   padding: 20px;
 }
 
+.quiz-item-stats {
+  display: inline;
+}
+
+@media screen and (max-width: 768px) {
+  .quiz-item-stats {
+    width: 100%;
+    display: block;
+    height:50px;
+    padding-top:16px;
+  }
+}
 
 .label-title {
   display: inline;
@@ -252,7 +264,7 @@ p.modal-content {
   background-color: #0EA352;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 768px) {
   .label-tag {
     vertical-align: center;
     border-radius: 8px;
@@ -265,6 +277,7 @@ p.modal-content {
     font-weight: 400;
     min-width: 64px;
     text-align: center;
+    float:left;
   }
 }
 
