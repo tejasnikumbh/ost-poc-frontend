@@ -2,19 +2,22 @@
 - Front end for the DQuiz POC for OST KIT Alpha Developer Phase II Program.
 - Built in React JS + Redux
 
+# Frontend Mockups
+This is the first draft for the mockup. Further versions vary in look and feel.
+![alt text](https://github.com/tejasnikumbh/ost-poc-backend/blob/master/resources/dquiz.png)
+
 # Installation Instructions
 ```
 > npm install
 > npm start
 ```
 # Todo
-- [ ] Performance of user front end code
 - [ ] Modal for login and sign up errors
-- [ ] Write tests
-- [ ] Make loader for signup and login loading
-- [ ] Logout functionality
+- [ ] Loading... for login and signup
 - [ ] Forgot password functionality
 - [ ] Replace sessionStorage with localStorage
+- [ ] Write tests
+
 
 # Author
 - Tejas Nikumbh
