@@ -50,6 +50,15 @@ class Profile extends Component {
     });
   }
 
+  getQuizEarningsForUser() {
+    const user = this.props.profile.data.user;
+    var earning = 0;
+    user.performance.quizzes.forEach((quiz) => {
+      earning += quiz.earning;
+    })
+    return earning;
+  }
+  
   quizAlreadyTaken() {
       const user = this.props.profile.data.user;
       const quiz = this.props.profile.data.quiz;
@@ -98,8 +107,8 @@ class Profile extends Component {
               <img className='modal-image' src='/resources/green_tick.png'/>
             </div>
             <p className='modal-content'>
-              Your request for DPLT tokens has been approved. You have been granted
-              10 DPLT tokens shortly.
+              Your request for DPLT tokens has been approved. You will be granted
+              1 DPLT token(s) shortly.
             </p>
             <div className='modal-button-container'>
               <button className='btn-modal btn-custom-blue'
@@ -143,6 +152,9 @@ class Profile extends Component {
                 </div>
                 <div className='content-item'>
                   Earned via airdrop: {user.ost_details.total_airdropped_tokens}
+                </div>
+                <div className='content-item'>
+                  Earned via quizzes: {this.getQuizEarningsForUser()}
                 </div>
             </div>
           </div>

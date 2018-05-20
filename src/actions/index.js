@@ -48,7 +48,7 @@ export function logout(authToken) {
   }
 }
 
-export function requestTokens(authToken, body = {amount: 1}) {
+export function requestTokens(authToken, body = {amount: 10}) {
   const request = axios.post('http://localhost:3000/users/request_tokens', body, {
     headers: {
       'x-auth': authToken
