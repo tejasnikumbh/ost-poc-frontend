@@ -58,7 +58,7 @@ class Profile extends Component {
     })
     return earning;
   }
-  
+
   quizAlreadyTaken() {
       const user = this.props.profile.data.user;
       const quiz = this.props.profile.data.quiz;
@@ -88,6 +88,26 @@ class Profile extends Component {
     const route = "/quiz/instruction";
     this.quizAlreadyTaken() ? this.openAlreadyTakenModal() : this.props.history.push(route);
 
+  }
+
+  renderScore() {
+    if(!this.quizAlreadyTaken()) {
+      return;
+    }
+
+    const user = this.props.profile.data.user;
+    const quiz = this.props.profile.data.quiz;
+
+    var curQuiz = user.performance.quizzes.filter((q) => {
+      return q._id == quiz._id
+    })[0];
+    console.log(user.performance.quizzes);
+    console.log(quiz._id);
+    return(
+      <div className='label-tag green' style={{marginRight:'10px'}}>
+        Score: {curQuiz.score}%
+      </div>
+    );
   }
 
   renderProfile() {
@@ -176,8 +196,9 @@ class Profile extends Component {
                   {quizMetaData.title}
                 </div>
                 <div className='label-tag red'>
-                  {quizMetaData.participation_fee} DPLT
+                  Fee: {quizMetaData.participation_fee} DPLT
                 </div>
+                {this.renderScore()}
               </div>
             </div>
           </div>
