@@ -14,6 +14,9 @@ class Profile extends Component {
         },
         alreadyTakenModal: {
           visible: false
+        },
+        insufficientBalanceModal: {
+          visible: false
         }
     }
   }
@@ -50,6 +53,22 @@ class Profile extends Component {
     });
   }
 
+  openInsufficientBalanceModal() {
+    this.setState({
+        insufficientBalanceModal : {
+          visible: true
+        }
+    });
+  }
+
+  closeInsufficientBalanceModal() {
+    this.setState({
+        insufficientBalanceModal : {
+          visible : false
+        }
+    });
+  }
+
   getQuizEarningsForUser() {
     const user = this.props.profile.data.user;
     var earning = 0;
@@ -57,6 +76,13 @@ class Profile extends Component {
       earning += quiz.earning;
     })
     return earning;
+  }
+
+  insufficientBalance() {
+    const user = this.props.profile.data.user;
+    const quiz = this.props.profile.data.quiz;
+
+    return user.ost_details.token_balance < quiz.participation_fee;
   }
 
   quizAlreadyTaken() {
@@ -85,9 +111,17 @@ class Profile extends Component {
   }
 
   navigateToQuizInstructionClicked() {
+    if(this.insufficientBalance()) {
+      this.openInsufficientBalanceModal();
+      return;
+    }
+    if(this.quizAlreadyTaken()) {
+      this.openAlreadyTakenModal();
+      return;
+    }
     const route = "/quiz/instruction";
-    this.quizAlreadyTaken() ? this.openAlreadyTakenModal() : this.props.history.push(route);
-
+    this.props.history.push(route);
+    return;
   }
 
   renderStats() {
@@ -98,7 +132,7 @@ class Profile extends Component {
           <div className='label-tag red'>
             Fee: {quiz.participation_fee} DPLT
           </div>
-        </div>  
+        </div>
       );
     }
 
@@ -173,6 +207,28 @@ class Profile extends Component {
           </div>
         </Modal>
 
+        <Modal visible={this.state.insufficientBalanceModal.visible}
+        width="400" height="300"
+        effect="fadeInUp"
+        onClickAway={() => this.closeInsufficientBalanceModal()}>
+          <div className='modal-container'>
+            <p className='modal-title'>Insufficient Balance</p>
+            <div className='modal-image-container'>
+              <img className='modal-image' src='/resources/warning.png'/>
+            </div>
+            <p className='modal-content'>
+              You do not have sufficient balance to take this quiz. Try
+              requesting more tokens.
+            </p>
+            <div className='modal-button-container'>
+              <button className='btn-modal btn-custom-blue'
+                onClick={() => this.closeInsufficientBalanceModal()}>
+                  Close
+              </button>
+            </div>
+          </div>
+        </Modal>
+
         <div className='header'> Quiz </div>
         <div className='body'>
           <div className='half-width'>
@@ -232,17 +288,6 @@ class Profile extends Component {
   }
 
   render() {
-    // console.log("REREnvder");
-    // Case when fetching profile and not authenticated
-    // if(_.isEmpty(this.props.profile.data) &&
-    // !this.props.profile.isAuthenticated) {
-    //   return (<div> Loading... </div>);
-    // }
-    // // Case when fetched profile but not authenticated
-    // if(!_.isEmpty(this.props.profile.data) &&
-    // !this.props.profile.isAuthenticated) {
-    //   return (<div> 401 Access Unauthorized </div>);
-    // }
     // Correct access
     if(!sessionStorage.getItem('x-auth')) {
       return (
