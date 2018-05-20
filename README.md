@@ -4,6 +4,9 @@
 
 # Frontend Mockups
 This is the first draft for the mockup. Further versions vary in look and feel.
+
+<br/>
+
 ![alt text](https://github.com/tejasnikumbh/ost-poc-frontend/blob/master/resources/dquiz.png)
 
 # Installation Instructions
