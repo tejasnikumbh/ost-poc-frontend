@@ -22,6 +22,10 @@
     display: inline;
     float: left;
   }
+
+  .label-tag.red{
+    float:right;
+  }
 }
 
 .modal-container {
