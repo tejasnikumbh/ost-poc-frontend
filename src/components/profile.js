@@ -102,6 +102,8 @@ class Profile extends Component {
   logoutClicked() {
     const token = sessionStorage.getItem('x-auth');
     this.props.logout(token);
+    // clean up
+    this.props.profile.data = {};
   }
 
   requestTokensClicked() {
@@ -142,8 +144,6 @@ class Profile extends Component {
     var curQuiz = user.performance.quizzes.filter((q) => {
       return q._id == quiz._id
     })[0];
-    console.log(user.performance.quizzes);
-    console.log(quiz._id);
     return(
       <div className='quiz-item-stats'>
         <div className='label-tag green' style={{marginRight:'10px'}}>
@@ -294,7 +294,7 @@ class Profile extends Component {
         <Redirect to="/login"/>
       );
     }
-
+    console.log(this.props.profile);
     if(_.isEmpty(this.props.profile.data)) {
       return (<div> Loading... </div>);
     }
