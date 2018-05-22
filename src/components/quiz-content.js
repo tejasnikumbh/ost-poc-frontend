@@ -121,7 +121,7 @@ class QuizContent extends Component {
           </div>
         </Modal>
         <div className='full-width'>
-          <div className='header'> Quiz </div>
+          <div className='header'> DQuiz </div>
         </div>
         <div className='full-width'>
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>

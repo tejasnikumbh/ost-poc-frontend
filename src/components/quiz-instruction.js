@@ -17,7 +17,7 @@ class QuizInstruction extends Component {
     return (
       <div className='sub-container-quiz'>
         <div className='full-width'>
-          <div className='header'> Quiz </div>
+          <div className='header'> DQuiz </div>
 
         </div>
         <div className='full-width'>

@@ -47,7 +47,7 @@ class Thankyou extends Component {
 
     return(
       <div className='sub-container-quiz'>
-        <div className='header'> Quiz </div>
+        <div className='header'> DQuiz </div>
         <div className='body'>
           <div className='title'> Feedback </div>
           <div className='content'>

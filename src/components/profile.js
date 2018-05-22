@@ -229,7 +229,7 @@ class Profile extends Component {
           </div>
         </Modal>
 
-        <div className='header'> Quiz </div>
+        <div className='header'> DQuiz </div>
         <div className='body'>
           <div className='half-width'>
             <div className='title'> User Details </div>
