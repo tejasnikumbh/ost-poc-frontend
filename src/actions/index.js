@@ -9,8 +9,8 @@ export const VIEW_PROFILE = 'VIEW_PROFILE';
 export const FETCH_QUIZ = 'FETCH_QUIZ';
 export const SUBMIT_QUIZ = 'SUBMIT_QUIZ';
 
-//const ROOT_URL = "https://ost-alpha-backend.herokuapp.com";
-const ROOT_URL = "http://localhost:3000";
+const ROOT_URL = "https://ost-alpha-backend.herokuapp.com";
+//const ROOT_URL = "http://localhost:3000";
 
 export function signup(email, password) {
   // Regex to put in apt name
