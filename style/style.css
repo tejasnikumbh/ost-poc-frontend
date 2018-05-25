@@ -16,16 +16,8 @@
   margin-right: 4%;
 }
 
-@media screen and (max-width: 768px) {
-  .half-width {
-    width: 100%;
-    display: inline;
-    float: left;
-  }
-
-  .label-tag.red{
-    float:right;
-  }
+.spacer {
+  height: 32px;
 }
 
 .modal-container {
@@ -41,18 +33,15 @@
     text-align: center;
 }
 
-p.modal-content {
-  border: 1px solid white;
-  text-align: left;
-  color: #888888;
-  padding: 20px;
-}
-
 .modal-button-container{
     position: absolute;
     bottom: 0px;
     width:100%;
     height:50px;
+}
+
+.modal-image {
+  height: 100%;
 }
 
 .modal-title {
@@ -61,8 +50,11 @@ p.modal-content {
   padding: 16px;
 }
 
-.modal-image {
-  height: 100%;
+p.modal-content {
+  border: 1px solid white;
+  text-align: left;
+  color: #888888;
+  padding: 20px;
 }
 
 .btn-modal.btn-custom-blue {
@@ -76,9 +68,6 @@ p.modal-content {
   opacity: 0.75;
 }
 
-.spacer {
-  height: 32px;
-}
 
 .sub-container-login{
   background:linear-gradient(
@@ -221,25 +210,10 @@ p.modal-content {
   display: inline;
 }
 
-@media screen and (max-width: 768px) {
-  .quiz-item-stats {
-    width: 100%;
-    display: block;
-    height:50px;
-    padding-top:16px;
-  }
-}
 
 .label-title {
   display: inline;
   min-width: 256px;
-}
-
-@media screen and (max-width: 992px) {
-  .label-title  {
-    text-align: center;
-    min-width: 128px;
-  }
 }
 
 .label-tag {
@@ -270,24 +244,6 @@ p.modal-content {
   background-color: #0EA352;
 }
 
-@media screen and (max-width: 768px) {
-  .label-tag {
-    vertical-align: center;
-    border-radius: 8px;
-    padding:8px;
-
-    background-color: #4b8bf5;
-    color: #FFFFFF;
-
-    font-size: 0.65em;
-    font-weight: 400;
-    min-width: 64px;
-    text-align: center;
-    float:left;
-  }
-}
-
-
 .btn-custom {
   border-radius: 16px;
   border: 1px solid #ffce42;
@@ -304,11 +260,8 @@ p.modal-content {
   height:50px;
 }
 
-@media screen and (max-width: 768px) {
-  .btn-custom {
-    padding: 8px 32px 8px 32px;
-    width:35%;
-  }
+.btn-custom:hover {
+  opacity: 0.75;
 }
 
 .btn-custom-blue {
@@ -352,13 +305,54 @@ p.modal-content {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .half-width {
+    width: 100%;
+    display: inline;
+    float: left;
+  }
+
+  .label-tag.red{
+    float:right;
+  }
+
+  .quiz-item-stats {
+    width: 100%;
+    display: block;
+    height:50px;
+    padding-top:16px;
+  }
+
+  .label-tag {
+    vertical-align: center;
+    border-radius: 8px;
+    padding:8px;
+
+    background-color: #4b8bf5;
+    color: #FFFFFF;
+
+    font-size: 0.65em;
+    font-weight: 400;
+    min-width: 64px;
+    text-align: center;
+    float:left;
+  }
+  .btn-custom {
+    padding: 8px 32px 8px 32px;
+    width:35%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .label-title  {
+    text-align: center;
+    min-width: 128px;
+  }
+}
+
 @media screen and (max-width: 512px) {
   .btn-custom {
     padding: 8px 32px 8px 32px;
     width:64%;
   }
-}
-
-.btn-custom:hover {
-  opacity: 0.75;
 }
