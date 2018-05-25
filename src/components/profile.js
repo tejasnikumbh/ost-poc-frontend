@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {fetchProfile, requestTokens, logout} from './../actions/index';
 import {Link, Redirect} from 'react-router-dom';
 import Modal from 'react-awesome-modal';
+import CustomModal from './sub-components/custom-modal';
 
 class Profile extends Component {
 
@@ -113,14 +114,17 @@ class Profile extends Component {
   }
 
   navigateToQuizInstructionClicked() {
-    if(this.insufficientBalance()) {
-      this.openInsufficientBalanceModal();
-      return;
-    }
+
     if(this.quizAlreadyTaken()) {
       this.openAlreadyTakenModal();
       return;
     }
+
+    if(this.insufficientBalance()) {
+      this.openInsufficientBalanceModal();
+      return;
+    }
+
     const route = "/quiz/instruction";
     this.props.history.push(route);
     return;
@@ -160,74 +164,46 @@ class Profile extends Component {
     const user = this.props.profile.data.user;
     const quizMetaData = this.props.profile.data.quiz;
     // console.log(user, quizMetaData);
+    const modalData = {
+      requestTokens: {
+        title: `Request Approved`,
+        content: `Your request for DPLT tokens has been approved.
+        You will be granted 1 DPLT token(s) shortly`,
+        image: `green_tick.png`
+      },
+      alreadyTaken: {
+        title: `Quiz Taken`,
+        content: `You have already taken this quiz. Try participating in other
+        available quizzes to start earning DPLT.`,
+        image: `green_tick.png`
+      },
+      insufficientBalance: {
+        title: `Insufficient Balance`,
+        content: `You do not have sufficient balance to take this quiz. Try
+        requesting more tokens.`,
+        image: `warning.png`
+      }
+    };
     return (
       <div className='sub-container-quiz'>
 
-        <Modal visible={this.state.requestTokenModal.visible}
-        width="400" height="300"
-        effect="fadeInUp"
-        onClickAway={() => this.closeRequestTokenModal()}>
-          <div className='modal-container'>
-            <p className='modal-title'>Request Approved</p>
-            <div className='modal-image-container'>
-              <img className='modal-image' src='/resources/green_tick.png'/>
-            </div>
-            <p className='modal-content'>
-              Your request for DPLT tokens has been approved. You will be granted
-              1 DPLT token(s) shortly.
-            </p>
-            <div className='modal-button-container'>
-              <button className='btn-modal btn-custom-blue'
-                onClick={() => this.closeRequestTokenModal()}>
-                  Close
-              </button>
-            </div>
-          </div>
-        </Modal>
+        <CustomModal title={modalData.requestTokens.title}
+        content={modalData.requestTokens.content}
+        image={modalData.requestTokens.image}
+        visible={this.state.requestTokenModal.visible}
+        onClickAwayFunction={this.closeRequestTokenModal.bind(this)}/>
 
-        <Modal visible={this.state.alreadyTakenModal.visible}
-        width="400" height="300"
-        effect="fadeInUp"
-        onClickAway={() => this.closeAlreadyTakenModal()}>
-          <div className='modal-container'>
-            <p className='modal-title'>Quiz Taken</p>
-            <div className='modal-image-container'>
-              <img className='modal-image' src='/resources/warning.png'/>
-            </div>
-            <p className='modal-content'>
-              You have already taken this quiz. Try participating in other
-              available quizzes to start earning DPLT.
-            </p>
-            <div className='modal-button-container'>
-              <button className='btn-modal btn-custom-blue'
-                onClick={() => this.closeAlreadyTakenModal()}>
-                  Close
-              </button>
-            </div>
-          </div>
-        </Modal>
+        <CustomModal title={modalData.alreadyTaken.title}
+        content={modalData.alreadyTaken.content}
+        image={modalData.alreadyTaken.image}
+        visible={this.state.alreadyTakenModal.visible}
+        onClickAwayFunction={this.closeAlreadyTakenModal.bind(this)}/>
 
-        <Modal visible={this.state.insufficientBalanceModal.visible}
-        width="400" height="300"
-        effect="fadeInUp"
-        onClickAway={() => this.closeInsufficientBalanceModal()}>
-          <div className='modal-container'>
-            <p className='modal-title'>Insufficient Balance</p>
-            <div className='modal-image-container'>
-              <img className='modal-image' src='/resources/warning.png'/>
-            </div>
-            <p className='modal-content'>
-              You do not have sufficient balance to take this quiz. Try
-              requesting more tokens.
-            </p>
-            <div className='modal-button-container'>
-              <button className='btn-modal btn-custom-blue'
-                onClick={() => this.closeInsufficientBalanceModal()}>
-                  Close
-              </button>
-            </div>
-          </div>
-        </Modal>
+        <CustomModal title={modalData.insufficientBalance.title}
+        content={modalData.insufficientBalance.content}
+        image={modalData.insufficientBalance.image}
+        visible={this.state.insufficientBalanceModal.visible}
+        onClickAwayFunction={this.closeInsufficientBalanceModal.bind(this)}/>
 
         <div className='header'> DQuiz </div>
         <div className='body'>
@@ -307,4 +283,4 @@ function mapStateToProps({user, profile}) {
   return {user, profile}
 }
 
-export default connect(mapStateToProps, {fetchProfile, requestTokens, logout})(Profile);
+export default connect (mapStateToProps, {fetchProfile, requestTokens, logout})(Profile);
