@@ -250,7 +250,7 @@ class Profile extends Component {
             <div className='title'> Earn Tokens </div>
             <div className='content'>
               <button onClick={this.requestTokensClicked.bind(this)}
-                className='btn-custom-blue'>
+                className='btn-custom-blue btn-full-width'>
                 Request Tokens
               </button>
             </div>
@@ -271,7 +271,7 @@ class Profile extends Component {
             <div className='sub-container-spacer'> ... </div>
             <div className='sub-container-btn'>
               <button onClick={this.logoutClicked.bind(this)}
-               className='btn-custom'>
+               className='btn-custom-blue btn-full-width'>
                 Logout
               </button>
             </div>
