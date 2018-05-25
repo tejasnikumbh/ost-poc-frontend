@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {getProperDate, getProperTime} from './../utils/utils';
 
 import _ from 'lodash';
 
@@ -57,35 +58,14 @@ class Thankyou extends Component {
         <div className='spacer'></div>
         <div className='sub-container-btn' style={{textAlign:'left'}}>
           <Link to={`/profile`}>
-            <button className='btn-custom-blue btn-full-width'> Back to Profile </button>
+            <button className='btn-custom-blue btn-full-width'>
+              Back to Profile
+            </button>
           </Link>
         </div>
       </div>
     );
   }
-}
-
-function getProperDate(dateString) {
-  var date = new Date(dateString);
-  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  var dayName = days[date.getDay()];
-  var months= ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"];
-  var monthName = months[date.getMonth()];
-  var formatted = `${dayName}, ${date.getDate()} ${monthName} - ${date.getFullYear()}`;
-  return formatted;
-}
-
-function getProperTime(dateString) {
-  var date = new Date(dateString);
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
-  var ampm = hours >= 12 ? 'pm' : 'am';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0'+minutes : minutes;
-  var strTime = hours + ':' + minutes + ' ' + ampm;
-  return strTime;
 }
 
 function mapStateToProps({submission}) {

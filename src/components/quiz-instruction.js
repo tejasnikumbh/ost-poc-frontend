@@ -79,21 +79,15 @@ class QuizInstruction extends Component {
           <div className='full-width'>
             <div className='sub-container-btn' style={{textAlign:'left'}}>
               <Link to={`/quiz/${quiz._id}`}>
-                <button className='btn-custom-blue btn-full-width'> Start Quiz </button>
+                <button className='btn-custom-blue btn-full-width'>
+                  Start Quiz 
+                </button>
               </Link>
             </div>
           </div>
       </div>
     );
   }
-
-  // For auth population and quiz meta data
-  // componentDidMount() {
-  //   if(!this.props.profile.isAuthenticated) {
-  //     const token = sessionStorage.getItem('x-auth');
-  //     this.props.fetchProfile(token);
-  //   }
-  // }
 
   componentDidMount() {
     const token = sessionStorage.getItem('x-auth');
@@ -102,16 +96,6 @@ class QuizInstruction extends Component {
   }
 
   render() {
-    // Case when fetching profile and not authenticated
-    // if(_.isEmpty(this.props.profile.data) &&
-    // !this.props.profile.isAuthenticated) {
-    //   return (<div> Loading... </div>);
-    // }
-    // Case when fetched profile but not authenticated
-    // if(!_.isEmpty(this.props.profile.data) &&
-    // !this.props.profile.isAuthenticated) {
-    //   return (<div> 401 Access Unauthorized </div>);
-    // }
 
     if(!sessionStorage.getItem('x-auth')) {
       return (

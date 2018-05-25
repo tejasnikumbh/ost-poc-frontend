@@ -34,19 +34,7 @@ class QuizContent extends Component {
   componentDidMount() {
     const token = sessionStorage.getItem('x-auth');
     if(!token) { return }
-    // if(!this.props.profile.data.quiz) {
-    //   this.props.fetchProfile(token, () => {
-    //     const quizMetaData = this.props.profile.data.quiz;
-    //     this.props.fetchQuiz(token, quizMetaData._id);
-    //   });
-    // }
-    // console.log(this.props.profile.data);
-    // if(_.isEmpty(this.props.profile.data)) {
-    //   const token = sessionStorage.getItem('x-auth');
-    //   if(!token) { return }
-    //   const boundFunction = this.fetchQuizData.bind(this);
-    //   this.props.fetchProfile(token, boundFunction(token));
-    // }
+
     if(_.isEmpty(this.props.profile.data)) {
       var quizContentComponent = this;
       this.props.fetchProfile(token)
