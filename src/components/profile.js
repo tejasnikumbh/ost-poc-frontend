@@ -4,7 +4,8 @@ import {fetchProfile, requestTokens, logout} from './../actions/index';
 import {Link, Redirect} from 'react-router-dom';
 import Modal from 'react-awesome-modal';
 import CustomModal from './sub-components/custom-modal';
-
+import Header from './sub-components/header';
+import UserDetails from './sub-components/user-details';
 class Profile extends Component {
 
   constructor(props) {
@@ -135,7 +136,7 @@ class Profile extends Component {
       const quiz = this.props.profile.data.quiz;
       return (
         <div className='quiz-item-stats'>
-          <div className='label-tag red'>
+          <div className='label-tag green'>
             Fee: {quiz.participation_fee} DPLT
           </div>
         </div>
@@ -185,8 +186,7 @@ class Profile extends Component {
       }
     };
     return (
-      <div className='sub-container-quiz'>
-
+      <div>
         <CustomModal title={modalData.requestTokens.title}
         content={modalData.requestTokens.content}
         image={modalData.requestTokens.image}
@@ -205,21 +205,15 @@ class Profile extends Component {
         visible={this.state.insufficientBalanceModal.visible}
         onClickAwayFunction={this.closeInsufficientBalanceModal.bind(this)}/>
 
-        <div className='header'> DQuiz </div>
-        <div className='body'>
+
+        <div className='sub-container-quiz'>
+          <Header/>
           <div className='half-width'>
             <div className='title'> User Details </div>
             <div className='content'>
-                <div className='content-item'> Email: {user.email} </div>
-                <div className='content-item'>
-                  Token Balance: {user.ost_details.token_balance}
-                </div>
-                <div className='content-item'>
-                  Earned via airdrop: {user.ost_details.total_airdropped_tokens}
-                </div>
-                <div className='content-item'>
-                  Earned via quizzes: {this.getQuizEarningsForUser()}
-                </div>
+
+                <UserDetails user={user}
+                getQuizEarningsForUser={this.getQuizEarningsForUser.bind(this)}/>
             </div>
           </div>
           <div className='half-width'>
@@ -247,7 +241,7 @@ class Profile extends Component {
             <div className='sub-container-spacer'> ... </div>
             <div className='sub-container-btn'>
               <button onClick={this.logoutClicked.bind(this)}
-               className='btn-custom-blue btn-full-width'>
+               className='btn-custom-blue btn-full-width yellow'>
                 Logout
               </button>
             </div>

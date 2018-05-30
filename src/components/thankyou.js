@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getProperDate, getProperTime} from './../utils/utils';
+import Header from './sub-components/header';
 
 import _ from 'lodash';
 
@@ -47,8 +48,8 @@ class Thankyou extends Component {
     }
 
     return(
-      <div className='sub-container-quiz'>
-        <div className='header'> DQuiz </div>
+      <div className='sub-container-quiz' style={{borderBottom: '2px dashed #cccccc'}}>
+        <Header/>
         <div className='body'>
           <div className='title'> Feedback </div>
           <div className='content'>
@@ -58,7 +59,7 @@ class Thankyou extends Component {
         <div className='spacer'></div>
         <div className='sub-container-btn' style={{textAlign:'left'}}>
           <Link to={`/profile`}>
-            <button className='btn-custom-blue btn-full-width'>
+            <button className='btn-custom-blue btn-full-width yellow'>
               Back to Profile
             </button>
           </Link>

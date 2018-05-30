@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 import {Redirect} from 'react-router-dom';
 import Modal from 'react-awesome-modal';
+import Header from './sub-components/header';
 
 import _ from 'lodash';
 
@@ -108,14 +109,12 @@ class QuizContent extends Component {
             </div>
           </div>
         </Modal>
-        <div className='full-width'>
-          <div className='header'> DQuiz </div>
-        </div>
+        <div className='full-width'><Header/></div>
         <div className='full-width'>
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             { this.renderQuestions() }
             <div className='sub-container-btn'>
-              <button type="submit" className="btn-custom-blue btn-full-width">Submit</button>
+              <button type="submit" className="btn-custom-blue btn-full-width yellow">Submit</button>
             </div>
           </form>
         </div>

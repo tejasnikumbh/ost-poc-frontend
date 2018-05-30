@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchProfile} from './../actions/index';
 import {Link, Redirect} from 'react-router-dom';
+import Header from './sub-components/header';
 
 import _ from 'lodash';
 
@@ -16,10 +17,7 @@ class QuizInstruction extends Component {
     const quiz = this.props.profile.data.quiz;
     return (
       <div className='sub-container-quiz'>
-        <div className='full-width'>
-          <div className='header'> DQuiz </div>
-
-        </div>
+        <div className='full-width'><Header/></div>
         <div className='full-width'>
           <div className='title'> Instructions </div>
           <div className='content'>
@@ -79,8 +77,8 @@ class QuizInstruction extends Component {
           <div className='full-width'>
             <div className='sub-container-btn' style={{textAlign:'left'}}>
               <Link to={`/quiz/${quiz._id}`}>
-                <button className='btn-custom-blue btn-full-width'>
-                  Start Quiz 
+                <button className='btn-custom-blue btn-full-width yellow'>
+                  Start Quiz
                 </button>
               </Link>
             </div>

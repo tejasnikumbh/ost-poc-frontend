@@ -57,9 +57,7 @@ class Login extends Component {
 
     return(
       <div className="sub-container-login">
-          <div className='form-title'>
-            DQuiz
-          </div>
+          <div className='form-title'>DCompete</div>
           <div className='form-content'>
             <Field
               name="email"
