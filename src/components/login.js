@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import {connect} from "react-redux";
 import {signup, login, SIGN_UP, LOGIN} from './../actions/index';
+import Footer from './sub-components/footer';
 
 import validator from 'email-validator';
 import _ from 'lodash';
@@ -32,7 +33,8 @@ class Login extends Component {
 
     return (
       <div className={className}>
-        <input className="form-control"
+        <input
+          className="form-control"
           placeholder={field.placeholder}
           type={field.type} {...field.input} />
         <div className="text-help">
@@ -56,7 +58,8 @@ class Login extends Component {
     const actionTaken = this.props.user.action;
 
     return(
-      <div className="sub-container-login">
+      <div className="sub-container-quiz" style={{backgroundColor:'fff', border: '2px dashed #ccc'}}>
+        <div className='body' style={{padding:'32px', backgroundColor:'#fdcd18'}}>
           <div className='form-title'>DCompete</div>
           <div className='form-content'>
             <Field
@@ -83,6 +86,8 @@ class Login extends Component {
               {this.props.user.error ? `*Error with ${actionTaken} - Check credentials` : ``}
             </div>
           </div>
+          <Footer/>
+        </div>
       </div>
     );
   }
